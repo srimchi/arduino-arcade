@@ -2,13 +2,13 @@
 
 This project involves using the Arduino micro-controller link two sensors to an LED screen, so that you can play [Space Invaders](http://en.wikipedia.org/wiki/Space_Invaders). The goal of this project is for you to:
 
-* Gain experience working with hardware, including circuits and a little bit of soldering (soldering is not required for the core, but you may need to solder for your reach depending on the hardware you add).
+* Gain experience working with hardware, including circuits and a little bit of soldering (soldering is **not** required for the core, but you may need to solder for your reach depending on the hardware you add).
 * Understand the basics of how software can control hardware, both input (a potentiometer and a button) and output (an LED screen)
 * Solidify the concepts you've learned in EECS 183, including functions, branches, loops, arrays, and classes
 * Use these concepts in a comprehensive project
 * Start moving beyond simply writing code to designing programs
 * Have fun!
-* **NOTE!!!**: This project will be limited to the first 45 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](http://goo.gl/forms/DAWJBoLh79) by 11:59 pm on March 24th. **Only one sign up per team please**. Also note that, should the limit of 45 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
+* **NOTE!!!**: This project will be limited to the first 45 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/pkyFyZyNGDRuEXpG2) by 11:59 pm on November 18th. **Only one sign up per team please**. Also note that, should the limit of 45 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
 
 Here's a picture of what your final product might look like:
 
@@ -213,11 +213,11 @@ There are two parts to setting up your hardware: wiring the button and the poten
 
 ### The Inputs: Potentiometer and Button
 
-Attach the potentiometer onto a column on the breadboard so that all the legs are in the same column. Looking at the image below, the leftmost leg is connected to ground. For this project, you should connect the middle leg to analog pin 5 even though in the image it is connected to analog pin 3. The rightmost leg should be connected to power.
+Attach the potentiometer onto a column on the breadboard so that all the legs are in the same column. Looking at the image below, the leftmost leg is connected to ground. For this project, you should connect the middle leg to analog pin 5. The rightmost leg should be connected to power.
 
 ![How to connect the potentiometer to the Arduino and to the breadboard](readme_files/potentiometer-breadboard.jpg)
 
-For the button, you want to position it on your breadboard so that the legs on opposite sides of the button spans a ditch (as shown in the digram). One leg should be wired to power; the other leg should be connected to the resistor(in the range of 1 kohm to 10 kohm) and digital pin 10. The resistor should be connected to ground. This image shows the correct wiring for a button connected to digital pin 2 (instead of pin 10).
+For the button, you want to position it on your breadboard so that the legs on opposite sides of the button spans a ditch (as shown in the digram). One leg should be wired to power; the other leg should be connected to the resistor(in the range of 1 kohm to 10 kohm) and digital pin 10. The resistor should be connected to ground. This image shows the correct wiring for a button connected to digital pin 10.
 
 ![How to connect the button to the Arduino and to the breadboard](readme_files/button-breadboard.png)
 
@@ -290,7 +290,7 @@ For the button, you want to position it on your breadboard so that the legs on o
 
     `git clone https://github.com/eecs183/Arduino_<###>_repository.git`
     
-    where `<###>` is the number of your group's repository. **Be sure to clone your group's repository, NOT that of the micro-arcade-W16 specification!**
+    where `<###>` is the number of your group's repository. **Be sure to clone your group's repository, NOT that of the micro-arcade-Fall2016 specification!**
 
 2. [Download the Arduino IDE](http://arduino.cc/en/Main/Software). Although there are Xcode and Visual Studio plugins for Arduino, the staff will **not** support them.
 
@@ -391,7 +391,7 @@ From the basic use of the Arduino microcontroller, there are many extensions for
 
 ## Step 0 of 2
 
-**NOTE!!!**: This project will be limited to the first 45 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](http://goo.gl/forms/DAWJBoLh79) by 11:59 pm on March 24th. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 45 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](http://goo.gl/forms/DAWJBoLh79)! Then your team may complete and submit your proposal, as detailed below.
+**NOTE!!!**: This project will be limited to the first 45 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/pkyFyZyNGDRuEXpG2) by 11:59 pm on November 18th. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 45 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](https://goo.gl/forms/pkyFyZyNGDRuEXpG2)! Then your team may complete and submit your proposal, as detailed below.
 
 ## Step 1 of 2
 
@@ -417,9 +417,9 @@ As well as these warm-up questions about the project:
 ## Step 2 of 2
 
 Only one person per team needs to complete the following instructions.
-Submit your proposals in PDF format by **Sat 3/26** to [EECS 183 on Gradescope](https://gradescope.com/courses/2688).
+Submit your proposals in PDF format by **Friday 11/18** to [EECS 183 on Gradescope](https://gradescope.com/courses/4780).
 
-* Head to [EECS 183 on Gradescope](https://gradescope.com/courses/2688). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
+* Head to [EECS 183 on Gradescope](https://gradescope.com/courses/4780). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
 * Once the PDF file has been uploaded, select pages corresponding to each part (i.e., question) of the proposal assignment. Click **Save**.
 * Click on **Add Group Member** on the top right. Add the three other members of your team by typing their names or email addresses. Once everyone on your team is in the list, click **Save**. Everyone who has been added to the group on Gradescope will receive an email and will be able to access the submission, including the score and staff's comments after the proposal has been graded.
 
@@ -432,13 +432,14 @@ Submissions will occur via your team GitHub repository. You will create a sketch
 
 | Project Component   | Maximum Points | Due Date | How to Submit |
 |:-------------------:|:--------------:|:--------:|:-------------:|
-|Proposal             |      10         |  3/25   | Gradescope |
-|Core Team Evaluation |      5         |    4/8   |TBD        |
-|Core                 |      45        |    4/8   |GitHub         |
-|Style                 |      5        |    4/8   |GitHub         |
-|Reach                |      50        |     4/18    |GitHub         |
-|Final Team Evaluation|      5         |     4/19    |TBD        |
-|Showcase             |      10        |    4/21     |Attendance + Presentation     |
+|Team Sign Up         |      0         |  11/18   | Google Form   |
+|Proposal             |      10        |  11/20   | Gradescope    |
+|Core                 |      45        |    12/02 | GitHub        |
+|Core - Style         |      5         |    12/02 | GitHub        |
+|Core Team Evaluation |      5         |    12/03 | TBA           |
+|Reach                |      50        |    12/13 | GitHub        |
+|Final Team Evaluation|      5         |    12/14 | TBA           |
+|Showcase             |      10        |    12/15 | Attendance + Presentation     |
 
 
 # Troubleshooting
@@ -449,14 +450,14 @@ If the Arduino IDE refuses to run on a Mac, even after you have installed a newe
 
 The Arduino Micro Arcade staff team has the following staff members.
 
-* Anna Rode
-* Anna Wasewicz
+* Andrew Wallis
+* Austin Brehob
 * Bill Arthur
-* Diana Slaba
+* Katherine Kampf
 * Pranav Srinivasan
 
 # References
 
-* The [Adafruit GFX library](https://github.com/adafruit/Adafruit-GFX-Library/commit/a9e5bc470736ffe9c9ef11d778bc4dcd47169d42)
-* The [Adafruit RGB Matrix Panel library](https://github.com/adafruit/RGB-matrix-Panel/commit/8570b7a431ff0ac52ff16b8448926cd0913dd609)
+* The [Adafruit GFX library](https://github.com/adafruit/Adafruit-GFX-Library)
+* The [Adafruit RGB Matrix Panel library](https://github.com/adafruit/RGB-matrix-Panel)
 * The [instructions for wiring the RGB Matrix](https://learn.adafruit.com/32x16-32x32-rgb-led-matrix/overview)
