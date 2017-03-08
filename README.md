@@ -11,7 +11,7 @@ This project involves using the Arduino micro-controller link two sensors to an 
 * **UPDATE!!!**: We have reached the maximum number of team requests for the Micro Arcade (Arduino) final project in EECS 183. Unfortunately, this means we cannot accept any more team requests for the Micro Arcade project. If your team has not already completed the Arduino Team Sign-Up form, as detailed below, you can no longer choose this as your final project. 
 Please select another of the final projects for your team: Creative AI, Game of Life, or Connect4.
 
-* **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/pkyFyZyNGDRuEXpG2) by 11:59 pm on November 18th. **Only one sign up per team please**. Also note that, should the limit of 40 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
+* **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2) by 11:59 pm on March 19th. **Only one sign up per team please**. Also note that, should the limit of 40 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
 
 Here's a picture of what your final product might look like:
 
@@ -397,7 +397,7 @@ From the basic use of the Arduino microcontroller, there are many extensions for
 **UPDATE!!!**: We have reached the maximum number of team requests for the Micro Arcade (Arduino) final project in EECS 183. Unfortunately, this means we cannot accept any more team requests for the Micro Arcade project. If your team has not already completed the Arduino Team Sign-Up form, as detailed below, you can no longer choose this as your final project. 
 Please select another of the final projects for your team: Creative AI, Game of Life, or Connect4.
 
-**NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/pkyFyZyNGDRuEXpG2) by 11:59 pm on November 18th. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 40 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](https://goo.gl/forms/pkyFyZyNGDRuEXpG2)! Then your team may complete and submit your proposal, as detailed below.
+**NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2) by 11:59 pm on March 19th. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 40 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2)! Then your team may complete and submit your proposal, as detailed below.
 
 ## Step 1 of 2
 
@@ -423,9 +423,9 @@ As well as these warm-up questions about the project:
 ## Step 2 of 2
 
 Only one person per team needs to complete the following instructions.
-Submit your proposals in PDF format by **Sunday 11/20** to [EECS 183 on Gradescope](https://gradescope.com/courses/4780).
+Submit your proposals in PDF format by **Sunday 3/26** to [EECS 183 on Gradescope](https://gradescope.com/courses/6593).
 
-* Head to [EECS 183 on Gradescope](https://gradescope.com/courses/4780). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
+* Head to [EECS 183 on Gradescope](https://gradescope.com/courses/6593). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
 * Once the PDF file has been uploaded, select pages corresponding to each part (i.e., question) of the proposal assignment. Click **Save**.
 * Click on **Add Group Member** on the top right. Add the three other members of your team by typing their names or email addresses. Once everyone on your team is in the list, click **Save**. Everyone who has been added to the group on Gradescope will receive an email and will be able to access the submission, including the score and staff's comments after the proposal has been graded.
 
@@ -436,16 +436,16 @@ Submissions will occur via your team GitHub repository. You will create a sketch
 
 # Grading Point Distribution and Dates
 
-| Project Component   | Maximum Points | Due Date | How to Submit |
-|:-------------------:|:--------------:|:--------:|:-------------:|
-|Team Sign Up         |      0         |  11/18   | Google Form   |
-|Proposal             |      10        |  11/20   | Gradescope    |
-|Core                 |      45        |    12/02 | GitHub        |
-|Core - Style         |      5         |    12/02 | GitHub        |
-|Core Team Evaluation |      5         |    12/03 | TBA           |
-|Reach                |      50        |    12/13 | GitHub        |
-|Final Team Evaluation|      5         |    12/14 | TBA           |
-|Showcase             |      10        |    12/15 | Attendance + Presentation     |
+| Project Component   | Maximum Points | Due Date  |         How to Submit         |
+|:-------------------:|:--------------:|:---------:|:-----------------------------:|
+|Team Sign Up         |      0         |   03/19   | Google Form                   |
+|Proposal             |      10        |   03/26   | Gradescope                    |
+|Core                 |      45        |   04/08   | GitHub                        |
+|Core - Style         |      5         |   04/08   | GitHub                        |
+|Core Team Evaluation |      5         |   04/08   | TBA                           |
+|Reach                |      50        |   04/18   | GitHub                        |
+|Final Team Evaluation|      5         |   04/19   | TBA                           |
+|Showcase             |      10        |   04/20   | Attendance + Presentation     |
 
 
 # Troubleshooting
@@ -457,9 +457,10 @@ If the Arduino IDE refuses to run on a Mac, even after you have installed a newe
 The Arduino Micro Arcade staff team has the following staff members.
 
 * Andrew Wallis
+* Anna Schmidt
 * Austin Brehob
 * Bill Arthur
-* Katherine Kampf
+* Hannah Westra
 * Pranav Srinivasan
 
 # References
