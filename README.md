@@ -11,7 +11,7 @@ This project involves using the Arduino micro-controller link two sensors to an 
 * **UPDATE!!!**: We have reached the maximum number of team requests for the Micro Arcade (Arduino) final project in EECS 183. Unfortunately, this means we cannot accept any more team requests for the Micro Arcade project. If your team has not already completed the Arduino Team Sign-Up form, as detailed below, you can no longer choose this as your final project. 
 Please select another of the final projects for your team: Creative AI, Game of Life, or Connect4.
 
-* **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2) by 11:59 pm on March 19th. **Only one sign up per team please**. Also note that, should the limit of 40 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
+* **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2) by 11:59 pm on March 23rd. **Only one sign up per team please**. Also note that, should the limit of 40 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
 
 Here's a picture of what your final product might look like:
 
@@ -438,11 +438,11 @@ Submissions will occur via your team GitHub repository. You will create a sketch
 
 | Project Component   | Maximum Points | Due Date  |         How to Submit         |
 |:-------------------:|:--------------:|:---------:|:-----------------------------:|
-|Team Sign Up         |      0         |   03/19   | Google Form                   |
+|Team Sign Up         |      0         |   03/23   | Google Form                   |
 |Proposal             |      10        |   03/26   | Gradescope                    |
 |Core                 |      45        |   04/08   | GitHub                        |
 |Core - Style         |      5         |   04/08   | GitHub                        |
-|Core Team Evaluation |      5         |   04/08   | TBA                           |
+|Core Team Evaluation |      5         |   04/07   | TBA                           |
 |Reach                |      50        |   04/18   | GitHub                        |
 |Final Team Evaluation|      5         |   04/19   | TBA                           |
 |Showcase             |      10        |   04/20   | Attendance + Presentation     |
