@@ -389,7 +389,7 @@ The [Distribution Code](#distribution-code) already has the `setup()` and `loop(
 
 ## Potentiometer 
 
-The [potentiometer input](https://www.arduino.cc/en/tutorial/potentiometer) is passed as an arguemnt to the `loop()` function of the `Game` class using the integer parameter `potentiometer_value`.
+The [potentiometer input](https://www.arduino.cc/en/tutorial/potentiometer) is passed as an argument to the `loop()` function of the `Game` class using the integer parameter `potentiometer_value`.
 The position of the player cannon must correlate to the position of the potentiometer. 
 That is, when the potentiomter is rotated to the middle, the cannon should be in the middle of the LED screen.
 As you rotate the potentiomter clockwise from center, the cannon will move to the right. 
