@@ -385,7 +385,7 @@ It's a good place to do setup tasks like setting pin modes or initializing libra
 The `loop()` function is called over and over and is heart of most sketches.
 The [Distribution Code](#distribution-code) already has the `setup()` and `loop()` functions defined for you. 
 
-[How the Arduino Uno executes sketches (programs)](readme_files/flow.png)
+![How the Arduino Uno executes sketches (programs)](readme_files/flow.png)
 
 
 # Reach
