@@ -215,10 +215,6 @@ class Game {
       time = 0;
     }
     
-    // returns enemy at specified index, if in bounds
-    Invader get_enemy(int index) {
-    }
-    
     // sets up a new game of Space Invaders
     // Modifies: global variable matrix
     // see http://arduino.cc/en/Reference/Setup
