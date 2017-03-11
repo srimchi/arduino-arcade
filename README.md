@@ -8,8 +8,6 @@ This project involves using the Arduino micro-controller link two sensors to an 
 * Use these concepts in a comprehensive project
 * Start moving beyond simply writing code to designing programs
 * Have fun!
-* **UPDATE!!!**: We have reached the maximum number of team requests for the Micro Arcade (Arduino) final project in EECS 183. Unfortunately, this means we cannot accept any more team requests for the Micro Arcade project. If your team has not already completed the Arduino Team Sign-Up form, as detailed below, you can no longer choose this as your final project. 
-Please select another of the final projects for your team: Creative AI, Game of Life, or Connect4.
 
 * **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2) by 11:59 pm on March 23rd. **Only one sign up per team please**. Also note that, should the limit of 40 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
 
@@ -295,7 +293,7 @@ For the button, you want to position it on your breadboard so that the legs on o
     
     where `<###>` is the number of your group's repository. **Be sure to clone your group's repository, NOT that of the micro-arcade-Fall2016 specification!**
 
-2. [Download the Arduino IDE](http://arduino.cc/en/Main/Software). Although there are Xcode and Visual Studio plugins for Arduino, the staff will **not** support them.
+2. [Download the Arduino IDE](http://arduino.cc/en/Main/Software). Although there are Xcode and Visual Studio plugins for Arduino, the staff will **not** support them. See [Arduino Software (IDE)](https://www.arduino.cc/en/Guide/Environment) for great tips on how to use the Arduino IDE.
 
 3. Install and/or run the Arduino IDE. Follow any directions as necessary; in particular, on Macs, you may be asked to install a newer version of Java. Successfully starting the IDE should give you a window like this:
 
@@ -376,6 +374,20 @@ Finally, you can use the `Serial.print(string text)` and `Serial.println(string 
 
 Be careful! If you use either function too many times in your code, your code could slow to a crawl.
 
+# Hints
+
+## Arduino Uno
+
+Before completing your game, it is helpful to understand the basic operation of the Arduino Uno.
+Every [sketch](https://www.arduino.cc/en/tutorial/sketch) (program) for the Arduino contains two special functions: `setup()` and `loop()`.
+The `setup()` is called once, when the sketch starts.
+It's a good place to do setup tasks like setting pin modes or initializing libraries. 
+The `loop()` function is called over and over and is heart of most sketches.
+The [Distribution Code](#distribution-code) already has the `setup()` and `loop()` functions defined for you. 
+
+[How the Arduino Uno executes sketches (programs)](readme_files/flow.png)
+
+
 # Reach
 You may NOT implement pong or block breaker. If you want to implement snake, make it your own creative original version of snake. We don't want to see classic snake.
 
@@ -392,14 +404,19 @@ From the basic use of the Arduino microcontroller, there are many extensions for
 
 # Proposal
 
-## Step 0 of 2
+## Required Items
 
-**UPDATE!!!**: We have reached the maximum number of team requests for the Micro Arcade (Arduino) final project in EECS 183. Unfortunately, this means we cannot accept any more team requests for the Micro Arcade project. If your team has not already completed the Arduino Team Sign-Up form, as detailed below, you can no longer choose this as your final project. 
-Please select another of the final projects for your team: Creative AI, Game of Life, or Connect4.
+In preparation to complete the project proposal, your team will need the following information:
+
+* Names and uniqnames for each member of your team.
+* GitHub usernames for each member of your team. See the general [final project specification](https://eecs183.org/projects/final/specification/#_github) about GitHub usernames and how to sign up for an account.
+
+
+## Step 0 of 3
 
 **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2) by 11:59 pm on March 23rd. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 40 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2)! Then your team may complete and submit your proposal, as detailed below.
 
-## Step 1 of 2
+## Step 1 of 3
 
 The team that you submit your proposal with constitutes your team for the Final Project. There will be no revisions to these teams except in situations which merit staff intervention. You may not change your team once this document has been submitted.
 
@@ -420,7 +437,7 @@ As well as these warm-up questions about the project:
 * The LED screen starts with (0, 0) at the top left corner, and has 16 rows and 32 columns. What is the (x, y) of the bottom right corner? How would you [turn that pixel `RED`](#distribution-code)?
 * There are at most 16 `Invaders` on screen. What is a good way of storing these Invaders? What programming concept could you use to draw all of them?
 
-## Step 2 of 2
+## Step 2 of 3
 
 Only one person per team needs to complete the following instructions.
 Submit your proposals in PDF format by **Sunday 3/26** to [EECS 183 on Gradescope](https://gradescope.com/courses/6593).
@@ -428,6 +445,13 @@ Submit your proposals in PDF format by **Sunday 3/26** to [EECS 183 on Gradescop
 * Head to [EECS 183 on Gradescope](https://gradescope.com/courses/6593). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
 * Once the PDF file has been uploaded, select pages corresponding to each part (i.e., question) of the proposal assignment. Click **Save**.
 * Click on **Add Group Member** on the top right. Add the three other members of your team by typing their names or email addresses. Once everyone on your team is in the list, click **Save**. Everyone who has been added to the group on Gradescope will receive an email and will be able to access the submission, including the score and staff's comments after the proposal has been graded.
+
+## Step 3 of 3
+
+Only one person per team needs to complete the following instructions.
+To complete this step, you **must** have the correct GitHub usernames for all of you team members.
+ 
+Finally, have ONE PERSON on your team head over to register.eecs183.org to sign your team up for a GitHub repository. Fill out all of the necessary information. For project, put **Arduino**.  Be careful, this IS case sensitive. If you receive the message "Submission has been recorded! Thank You!", then you are done. AGAIN, YOU SHOULD ONLY SUBMIT ONCE PER TEAM. If you have some issues, the website will alert you of the fields that were incorrectly filled out. Hit Back and correct your mistakes, and submit again. Continue until you see the message above. If you are having trouble with this form, post on Piazza to get help.
 
 
 # Project Submission
