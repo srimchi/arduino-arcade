@@ -233,7 +233,7 @@ class Game {
 
   private:
     int level;
-    int time;
+    unsigned long time;
     Player player;
     Cannonball ball;
     Invader enemies[NUM_ENEMIES];

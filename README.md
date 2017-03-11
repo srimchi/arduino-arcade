@@ -47,7 +47,7 @@ The core part of this project is for you to implement a clone of Space Invaders,
 
 ## Hardware Overview
 
-**NOTE**: At the end of the showcase, you **MUST** return all components that you have checked out from the class. **_If any component is broken, or if it is not returned at the end of the showcase, you must pay to replace that component._** You will not receive your grades for the semester until you have paid.
+**NOTE**: At the end of the showcase, you must return all components that you have checked out from the class. **_If any component is broken, or if it is not returned at the end of the showcase, you must pay to replace that component._** You will not receive your grades for the semester until you have paid.
 
 Your team will be provided with the following necessary hardware
 
@@ -208,7 +208,7 @@ Here is a short guide to help you start this project. This guide walks you throu
 
 ## Hardware
 
-**WARNING: DO NOT power your Arduino or LED Matrix unless you are sure everything is wired properly**. Improperly wired projects may cause damage to your board or components. **_If you break a component, you will be responsible for replacing it!_**
+**WARNING: DO NOT power your Arduino or LED Matrix unless you are sure everything is wired properly**. Improperly wired projects may cause damage to your board or components. _If you break a component, you will be responsible for replacing it!_
 
 There are two parts to setting up your hardware: wiring the button and the potentiometer to the Arduino as inputs and wiring the LED screen to the Arduino as an input.
 
@@ -285,13 +285,13 @@ For the button, you want to position it on your breadboard so that the legs on o
 
 ## Software
 
-**WARNING: DO NOT start coding until you have wired your matrix properly and can test while you code.**
+**WARNING: Do not start coding until you have wired your matrix properly and can test while you code.**
 
 1. Download your team's repository distribution code from Github by issuing this command on the terminal to clone your team's repository:
 
     `git clone https://github.com/eecs183/Arduino_<###>_repository.git`
     
-    where `<###>` is the number of your group's repository. **Be sure to clone your group's repository, NOT that of the micro-arcade-Fall2016 specification!**
+    where `<###>` is the number of your group's repository. **Be sure to clone your group's repository, NOT that of the micro-arcade-Winter2017 specification!**
 
 2. [Download the Arduino IDE](http://arduino.cc/en/Main/Software). Although there are Xcode and Visual Studio plugins for Arduino, the staff will **not** support them. See [Arduino Software (IDE)](https://www.arduino.cc/en/Guide/Environment) for great tips on how to use the Arduino IDE.
 
@@ -387,20 +387,32 @@ The [Distribution Code](#distribution-code) already has the `setup()` and `loop(
 
 ![How the Arduino Uno executes sketches (programs)](readme_files/flow.png)
 
+## Potentiometer 
+
+The [potentiometer input](https://www.arduino.cc/en/tutorial/potentiometer) is passed as an arguemnt to the `loop()` function of the `Game` class using the integer parameter `potentiometer_value`.
+The position of the player cannon must correlate to the position of the potentiometer. 
+That is, when the potentiomter is rotated to the middle, the cannon should be in the middle of the LED screen.
+As you rotate the potentiomter clockwise from center, the cannon will move to the right. 
+Any time you are not rotating the potentiomter, the cannon should not move accross the game screen.
+
+You may find that your cannon has some small amount of jitter on the LED display.
+A simple method to help reduce this is called [input smoothing](https://www.arduino.cc/en/tutorial/smoothing).
 
 # Reach
-You may NOT implement pong or block breaker. If you want to implement snake, make it your own creative original version of snake. We don't want to see classic snake.
-
-Your reach must be complex enough if you want full points. Simply implementing powerups or a boss level is not sufficient unless you go above and beyond in your execution of this. 
-
-We are most impressed by students being creative and implementing their own games. Seeing the same game over and over again is boring. Try to be unique. We don't want to see 20 implementations of snake.
+You may NOT implement pong or block breaker. If you want to implement snake, make it your own creative original version of snake. The most basic snake game will not receive full points for the reach. Be advised: Tetris is a **very** challenging game to implement using the Arduino kit and should only be attempted if your team seeks to push the limit. To help support your reach ideas, we can provide additional, duplicate, hardware kit items (e.g., wires, buttons, breadbaords, and potentiomters).
 
 From the basic use of the Arduino microcontroller, there are many extensions for this project. Here is a short list meant to inspire your team. The list of possible extensions to this project is limited only by your imagination:
 
 * Adding sound to your games and an LCD display for a scoreboard would be nice and is something you should look into, but this would not be a complete extension considering how simple it is. You would have to couple it with a few more ideas. 
-* Program an additional game of your own creation
+* Program an additional game of your own creation.
 * Change the rules of the current game so that it has a more difficult implementation.
 * Write an AI that could reliably beat the game. The AI must be intelligent.
+
+Your reach must be complex enough if you want full points. Simply implementing powerups or a boss level is not sufficient unless you go above and beyond in your execution of this. 
+We are most impressed by students being creative and implementing their own games. Try to be unique. We don't want to see 20 implementations of snake. Examples of reach ideas which may earn full points if well implemented:
+* A unique game of your own creation.
+* Another classic arcade game (see exceptions above).
+* A significantly upgraded Invaders game. An example is a game with a combination of interesting boss levels and new gameplay elements (power ups, invaders shoot cannonballs, etc.).
 
 # Proposal
 
@@ -424,7 +436,7 @@ Create a PDF file called proposal.pdf. Include the following:
 * The name of your team.
 * Name, uniqname, and GitHub username for each team member.
 
-Your proposal **must** also answer the following questions about your team:
+Your proposal must also answer the following questions about your team:
 
 * How will your team split up the work?
 * How regularly will your team meet to work on this project, if at all?
@@ -451,7 +463,7 @@ Submit your proposals in PDF format by **Sunday 3/26** to [EECS 183 on Gradescop
 Only one person per team needs to complete the following instructions.
 To complete this step, you **must** have the correct GitHub usernames for all of you team members.
  
-Finally, have ONE PERSON on your team head over to register.eecs183.org to sign your team up for a GitHub repository. Fill out all of the necessary information. For project, put **Arduino**.  Be careful, this IS case sensitive. If you receive the message "Submission has been recorded! Thank You!", then you are done. AGAIN, YOU SHOULD ONLY SUBMIT ONCE PER TEAM. If you have some issues, the website will alert you of the fields that were incorrectly filled out. Hit Back and correct your mistakes, and submit again. Continue until you see the message above. If you are having trouble with this form, post on Piazza to get help.
+Finally, have ONE PERSON on your team head over to [register.eecs183.org](http://register.eecs183.org/) to sign your team up for a GitHub repository. Fill out all of the necessary information. For project, put **Arduino**.  Be careful, this IS case sensitive. If you receive the message "Submission has been recorded! Thank You!", then you are done. AGAIN, YOU SHOULD ONLY SUBMIT ONCE PER TEAM. If you have some issues, the website will alert you of the fields that were incorrectly filled out. Hit Back and correct your mistakes, and submit again. Continue until you see the message above. If you are having trouble with this form, post on Piazza to get help.
 
 
 # Project Submission
