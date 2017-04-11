@@ -476,13 +476,21 @@ Submissions will occur via your team GitHub repository. You will create a sketch
 |:-------------------:|:--------------:|:---------:|:-----------------------------:|
 |Team Sign Up         |      0         |   03/23   | Google Form                   |
 |Proposal             |      10        |   03/26   | Gradescope                    |
-|Core                 |      45        |   04/08   | GitHub                        |
-|Core - Style         |      5         |   04/08   | GitHub                        |
+|Core                 |      50        |   04/08   | GitHub                        |
 |Core Team Evaluation |      5         |   04/07   | TBA                           |
 |Reach                |      50        |   04/18   | GitHub                        |
 |Final Team Evaluation|      5         |   04/19   | TBA                           |
 |Showcase             |      10        |   04/20   | Attendance + Presentation     |
 
+# Grading Rubric
+
+| Project Component      |     Points     |
+|:----------------------:|:--------------:|
+|Style                   |                |
+|Levels                  |                |
+|Player functionality    |                |
+|Invader functionality   |                |
+|Cannonball functionality|                |
 
 # Troubleshooting
 
