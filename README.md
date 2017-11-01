@@ -9,7 +9,7 @@ This project involves using the Arduino micro-controller link two sensors to an 
 * Start moving beyond simply writing code to designing programs
 * Have fun!
 
-* **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2) by 11:59 pm on March 23rd. **Only one sign up per team please**. Also note that, should the limit of 40 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
+* **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://docs.google.com/forms/d/e/1FAIpQLSdRYKQIbOcWAmC2iy7l5LliY3TPDlalqLLuFsYuoBNJr_80DQ/viewform?usp=sf_link) by 11:59 pm on November 19th. **Only one sign up per team please**. Also note that, should the limit of 40 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
 
 Here's a picture of what your final product might look like:
 
@@ -406,13 +406,12 @@ From the basic use of the Arduino microcontroller, there are many extensions for
 * Adding sound to your games and an LCD display for a scoreboard would be nice and is something you should look into, but this would not be a complete extension considering how simple it is. You would have to couple it with a few more ideas. 
 * Program an additional game of your own creation.
 * Change the rules of the current game so that it has a more difficult implementation.
-* Write an AI that could reliably beat the game. The AI must be intelligent.
 
 Your reach must be complex enough if you want full points. Simply implementing powerups or a boss level is not sufficient unless you go above and beyond in your execution of this. 
 We are most impressed by students being creative and implementing their own games. Try to be unique. We don't want to see 20 implementations of snake. Examples of reach ideas which may earn full points if well implemented:
 * A unique game of your own creation.
 * Another classic arcade game (see exceptions above).
-* A significantly upgraded Invaders game. An example is a game with a combination of interesting boss levels and new gameplay elements (power ups, invaders shoot cannonballs, etc.).
+* A **significantly** upgraded Invaders game. An example is a game with a combination of interesting boss levels and new gameplay elements (power ups, invaders shoot cannonballs, multiplayer functionality, a variety of different weapons, an AI that learns to beat the invaders, etc.).
 
 # Proposal
 
@@ -426,7 +425,7 @@ In preparation to complete the project proposal, your team will need the followi
 
 ## Step 0 of 3
 
-**NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2) by 11:59 pm on March 23rd. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 40 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](https://goo.gl/forms/swbqP46UmeD6VZRa2)! Then your team may complete and submit your proposal, as detailed below.
+**NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://docs.google.com/forms/d/e/1FAIpQLSdRYKQIbOcWAmC2iy7l5LliY3TPDlalqLLuFsYuoBNJr_80DQ/viewform?usp=sf_link) by 11:59 pm on November 19th. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 40 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](https://docs.google.com/forms/d/e/1FAIpQLSdRYKQIbOcWAmC2iy7l5LliY3TPDlalqLLuFsYuoBNJr_80DQ/viewform?usp=sf_link)! Then your team may complete and submit your proposal, as detailed below.
 
 ## Step 1 of 3
 
@@ -452,9 +451,9 @@ As well as these warm-up questions about the project:
 ## Step 2 of 3
 
 Only one person per team needs to complete the following instructions.
-Submit your proposals in PDF format by **Sunday 3/26** to [EECS 183 on Gradescope](https://gradescope.com/courses/6593).
+Submit your proposals in PDF format by **Sunday 11/19** to [EECS 183 on Gradescope](https://gradescope.com/courses/12014).
 
-* Head to [EECS 183 on Gradescope](https://gradescope.com/courses/6593). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
+* Head to [EECS 183 on Gradescope](https://gradescope.com/courses/12014). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
 * Once the PDF file has been uploaded, select pages corresponding to each part (i.e., question) of the proposal assignment. Click **Save**.
 * Click on **Add Group Member** on the top right. Add the three other members of your team by typing their names or email addresses. Once everyone on your team is in the list, click **Save**. Everyone who has been added to the group on Gradescope will receive an email and will be able to access the submission, including the score and staff's comments after the proposal has been graded.
 
@@ -468,29 +467,29 @@ Finally, have ONE PERSON on your team head over to [register.eecs183.org](http:/
 
 # Project Submission
 
-Submissions will occur via your team GitHub repository. You will create a sketch file starting from the distribution code. Your entire implementation will be in this one file. We will retrieve your file from your group repository on the due date. We are not grading the functions separately. We will run your game on a board and make sure everything that is specified happens correctly or points will be deducted. Do not just write your code without continuously testing it on the board. It will be exceptionally hard to debug that way.
+Submissions will occur via your team GitHub repository. You will create a sketch file starting from the distribution code. Your entire implementation will be in this one file. We will retrieve your file from your group repository on the due date. We are not grading the functions separately. We will run your game on a board and make sure everything that is specified happens correctly or points will be deducted. **Do not just write your code without continuously testing it on the board**. It will be exceptionally (impossibly?) hard to debug that way.
 
 # Grading Point Distribution and Dates
 
 | Project Component   | Maximum Points | Due Date  |         How to Submit         |
 |:-------------------:|:--------------:|:---------:|:-----------------------------:|
-|Team Sign Up         |      0         |   03/23   | Google Form                   |
-|Proposal             |      10        |   03/26   | Gradescope                    |
-|Core                 |      50        |   04/08   | GitHub                        |
-|Core Team Evaluation |      5         |   04/07   | TBA                           |
-|Reach                |      50        |   04/18   | GitHub                        |
-|Final Team Evaluation|      5         |   04/19   | TBA                           |
-|Showcase             |      10        |   04/20   | Attendance + Presentation     |
+|Team Sign Up         |      0         |   11/19   | Google Form                   |
+|Proposal             |      10        |   11/19   | Gradescope                    |
+|Core                 |      50        |   12/01   | GitHub                        |
+|Core Team Evaluation |      5         |   12/02   | TBA                           |
+|Reach                |      50        |   12/12   | GitHub                        |
+|Final Team Evaluation|      5         |   12/13   | TBA                           |
+|Showcase             |      10        |   12/14   | Attendance + Presentation     |
 
 # Grading Rubric
 
 | Project Component      |     Points     |
 |:----------------------:|:--------------:|
-|Style                   |                |
-|Levels                  |                |
-|Player functionality    |                |
-|Invader functionality   |                |
-|Cannonball functionality|                |
+|Style                   |        5       |
+|Levels                  |       12       |
+|Player functionality    |        8       |
+|Invader functionality   |       14       |
+|Cannonball functionality|       11       |
 
 # Troubleshooting
 
@@ -501,10 +500,13 @@ If the Arduino IDE refuses to run on a Mac, even after you have installed a newe
 The Arduino Micro Arcade staff team has the following staff members.
 
 * Andrew Wallis
-* Anna Schmidt
 * Austin Brehob
 * Bill Arthur
-* Hannah Westra
+* Krishna Trivedi
+* Kristen Escher
+* Isabella DeShantz-Cook
+* Madison Helsel
+* Stefan Falkenstein
 * Pranav Srinivasan
 
 # References
