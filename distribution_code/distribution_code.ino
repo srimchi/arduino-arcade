@@ -221,10 +221,10 @@ class Game {
     void setup() {
     }
     
-    // displays and runs Space Invaders!
+    // advances the game simulation one step and renders the graphics
     // see spec for details of game
     // Modifies: global variable matrix
-    void loop(int potentiometer_value, bool button_pressed) {
+    void update(int potentiometer_value, bool button_pressed) {
     }
 
   private:
@@ -258,7 +258,7 @@ void loop() {
   int potentiometer_value = analogRead(POTENTIOMETER_PIN_NUMBER);
   bool button_pressed = (digitalRead(BUTTON_PIN_NUMBER) == HIGH);
 
-  game.loop(potentiometer_value, button_pressed);
+  game.update(potentiometer_value, button_pressed);
 }
 
 // displays Level
