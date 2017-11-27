@@ -246,14 +246,14 @@ class Game {
 // a global variable that represents the game Space Invaders
 Game game;
 
-// see http://arduino.cc/en/Reference/Setup
+// see https://www.arduino.cc/reference/en/language/structure/sketch/setup/
 void setup() {
   Serial.begin(9600);
   pinMode(BUTTON_PIN_NUMBER, INPUT);
   matrix.begin();
 }
 
-// see http://arduino.cc/en/Reference/Loop
+// see https://www.arduino.cc/reference/en/language/structure/sketch/loop/
 void loop() {
   int potentiometer_value = analogRead(POTENTIOMETER_PIN_NUMBER);
   bool button_pressed = (digitalRead(BUTTON_PIN_NUMBER) == HIGH);
