@@ -500,8 +500,6 @@ If the Arduino IDE refuses to run on a Mac, even after you have installed a newe
 The Arduino Micro Arcade staff team has the following staff members.
 
 * Andrew Wallis
-* Austin Brehob
-* Bill Arthur
 * Krishna Trivedi
 * Kristen Escher
 * Isabella DeShantz-Cook
