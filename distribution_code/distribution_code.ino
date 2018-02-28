@@ -46,15 +46,15 @@ class Color {
 };
 
 const Color BLACK(0, 0, 0);
-const Color RED(7, 0, 0);
-const Color ORANGE(7, 4, 0);
-const Color YELLOW(7, 7, 0);
-const Color GREEN(0, 7, 0);
-const Color BLUE(0, 0, 7);
-const Color PURPLE(7, 0, 7);
-const Color WHITE(7, 7, 7);
-const Color LIME(4, 7, 0);
-const Color AQUA(0, 7, 7);
+const Color RED(4, 0, 0);
+const Color ORANGE(6, 1, 0);
+const Color YELLOW(4, 4, 0);
+const Color GREEN(0, 4, 0);
+const Color BLUE(0, 0, 4);
+const Color PURPLE(1, 0, 2);
+const Color WHITE(4, 4, 4);
+const Color LIME(2, 4, 0);
+const Color AQUA(0, 4, 4);
 
 class Invader {
   public:
