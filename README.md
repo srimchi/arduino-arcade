@@ -9,7 +9,7 @@ This project involves using the Arduino micro-controller link two sensors to an 
 * Start moving beyond simply writing code to designing programs
 * Have fun!
 
-* **NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://docs.google.com/forms/d/e/1FAIpQLSdRYKQIbOcWAmC2iy7l5LliY3TPDlalqLLuFsYuoBNJr_80DQ/viewform?usp=sf_link) by 11:59 pm on November 19th. **Only one sign up per team please**. Also note that, should the limit of 40 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
+* **NOTE!!!**: This project will be limited to the first 45 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/VDwZfu8N48E5gh7v2) by 11:59 pm on March 25th. **Only one sign up per team**. Also note that, should the limit of 45 teams be reached before this time, the sign up form will close and your team will not be able to select this project. More details are found in the [Proposal](#proposal) section of this document.
 
 Here's a picture of what your final product might look like:
 
@@ -399,7 +399,7 @@ You may find that your cannon has some small amount of jitter on the LED display
 A simple method to help reduce this is called [input smoothing](https://www.arduino.cc/en/tutorial/smoothing).
 
 # Reach
-You may NOT implement pong or block breaker. If you want to implement snake, make it your own creative original version of snake. The most basic snake game will not receive full points for the reach. Be advised: Tetris is a **very** challenging game to implement using the Arduino kit and should only be attempted if your team seeks to push the limit. To help support your reach ideas, we can provide additional, duplicate, hardware kit items (e.g., wires, buttons, breadbaords, and potentiomters).
+You may NOT implement pong or block breaker. If you want to implement snake or flappy bird, you must make it your own creative and original version. The most basic implementations of theses games do not have sufficient complexity to receive full points for the reach. Be advised: Tetris is a **very** challenging game to implement using the Arduino kit and should only be attempted if your team seeks to push the limit. To help support your reach ideas, we can provide additional, duplicate, hardware kit items (e.g., wires, buttons, breadbaords, and potentiomters).
 
 From the basic use of the Arduino microcontroller, there are many extensions for this project. Here is a short list meant to inspire your team. The list of possible extensions to this project is limited only by your imagination:
 
@@ -408,9 +408,9 @@ From the basic use of the Arduino microcontroller, there are many extensions for
 * Change the rules of the current game so that it has a more difficult implementation.
 
 Your reach must be complex enough if you want full points. Simply implementing powerups or a boss level is not sufficient unless you go above and beyond in your execution of this. 
-We are most impressed by students being creative and implementing their own games. Try to be unique. We don't want to see 20 implementations of snake. Examples of reach ideas which may earn full points if well implemented:
+We are most impressed by students being creative and implementing their own games. Try to be unique. Examples of reach ideas which may earn full points if well implemented:
 * A unique game of your own creation.
-* Another classic arcade game (see exceptions above).
+* Another classic arcade game (see exceptions above).  A quick google search will find dozens of potential ideas
 * A **significantly** upgraded Invaders game. An example is a game with a combination of interesting boss levels and new gameplay elements (power ups, invaders shoot cannonballs, multiplayer functionality, a variety of different weapons, an AI that learns to beat the invaders, etc.).
 
 # Proposal
@@ -425,7 +425,7 @@ In preparation to complete the project proposal, your team will need the followi
 
 ## Step 0 of 3
 
-**NOTE!!!**: This project will be limited to the first 40 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://docs.google.com/forms/d/e/1FAIpQLSdRYKQIbOcWAmC2iy7l5LliY3TPDlalqLLuFsYuoBNJr_80DQ/viewform?usp=sf_link) by 11:59 pm on November 19th. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 40 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](https://docs.google.com/forms/d/e/1FAIpQLSdRYKQIbOcWAmC2iy7l5LliY3TPDlalqLLuFsYuoBNJr_80DQ/viewform?usp=sf_link)! Then your team may complete and submit your proposal, as detailed below.
+**NOTE!!!**: This project will be limited to the first 45 teams to request this project. Your team MUST submit a request using the [Arduino Team Sign-Up form](https://goo.gl/forms/VDwZfu8N48E5gh7v2) by 11:59 pm on March 25th. **Only one sign up per team, please**. Failure to do so will disqualify your team from selecting this project. Also note that if the limit of 45 teams is reached, no futher teams will be allowed to complete this project. Form your team early and complete the [Arduino Team Sign-Up form](https://goo.gl/forms/VDwZfu8N48E5gh7v2)! Then your team may complete and submit your proposal, as detailed below.
 
 ## Step 1 of 3
 
@@ -451,9 +451,9 @@ As well as these warm-up questions about the project:
 ## Step 2 of 3
 
 Only one person per team needs to complete the following instructions.
-Submit your proposals in PDF format by **Sunday 11/19** to [EECS 183 on Gradescope](https://gradescope.com/courses/12014).
+Submit your proposals in PDF format by **Sunday 3/25** to [EECS 183 on Gradescope](https://gradescope.com/courses/15845).
 
-* Head to [EECS 183 on Gradescope](https://gradescope.com/courses/12014). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
+* Head to [EECS 183 on Gradescope](https://gradescope.com/courses/15845). Then choose **Proposal: Arduino** from the assignments list. Select **Submit PDF** and upload your proposal.pdf.
 * Once the PDF file has been uploaded, select pages corresponding to each part (i.e., question) of the proposal assignment. Click **Save**.
 * Click on **Add Group Member** on the top right. Add the three other members of your team by typing their names or email addresses. Once everyone on your team is in the list, click **Save**. Everyone who has been added to the group on Gradescope will receive an email and will be able to access the submission, including the score and staff's comments after the proposal has been graded.
 
@@ -473,23 +473,25 @@ Submissions will occur via your team GitHub repository. You will create a sketch
 
 | Project Component   | Maximum Points | Due Date  |         How to Submit         |
 |:-------------------:|:--------------:|:---------:|:-----------------------------:|
-|Team Sign Up         |      0         |   11/19   | Google Form                   |
-|Proposal             |      10        |   11/19   | Gradescope                    |
-|Core                 |      50        |   12/01   | GitHub                        |
-|Core Team Evaluation |      5         |   12/02   | TBA                           |
-|Reach                |      50        |   12/12   | GitHub                        |
-|Final Team Evaluation|      5         |   12/13   | TBA                           |
-|Showcase             |      10        |   12/14   | Attendance + Presentation     |
+|Team Sign Up         |      0         |   3/35   | Google Form                   |
+|Proposal             |      10        |   3/25   | Gradescope                    |
+|Core                 |      50        |   4/06   | GitHub                        |
+|Core Team Evaluation |      5         |   4/07   | TBA                           |
+|Reach                |      50        |   4/17   | GitHub                        |
+|Final Team Evaluation|      5         |   4/18   | TBA                           |
+|Showcase             |      10        |   4/18   | Attendance + Presentation     |
 
 # Grading Rubric
 
-| Project Component      |     Points     |
-|:----------------------:|:--------------:|
-|Style                   |        5       |
-|Levels                  |       12       |
-|Player functionality    |        8       |
-|Invader functionality   |       14       |
-|Cannonball functionality|       11       |
+| Project Component       |     Points     |
+|:-----------------------:|:--------------:|
+|Style                    |        5       |
+|Levels                   |       12       |
+|Player movement/controls |        8       |
+|Invader movement/death   |       14       |
+|Cannonball functionality |       11       |
+
+Note:
 
 # Troubleshooting
 
@@ -501,8 +503,8 @@ The Arduino Micro Arcade staff team has the following staff members.
 
 * Andrew Wallis
 * Krishna Trivedi
-* Kristen Escher
 * Isabella DeShantz-Cook
+* Naomi Endres
 * Madison Helsel
 * Stefan Falkenstein
 * Pranav Srinivasan
