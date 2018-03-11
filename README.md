@@ -473,7 +473,7 @@ Submissions will occur via your team GitHub repository. You will create a sketch
 
 | Project Component   | Maximum Points | Due Date  |         How to Submit         |
 |:-------------------:|:--------------:|:---------:|:-----------------------------:|
-|Team Sign Up         |      0         |   3/35   | Google Form                   |
+|Team Sign Up         |      0         |   3/25   | Google Form                   |
 |Proposal             |      10        |   3/25   | Gradescope                    |
 |Core                 |      50        |   4/06   | GitHub                        |
 |Core Team Evaluation |      5         |   4/07   | TBA                           |
