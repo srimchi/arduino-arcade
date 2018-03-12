@@ -462,7 +462,7 @@ Submit your proposals in PDF format by **Sunday 3/25** to [EECS 183 on Gradescop
 Only one person per team needs to complete the following instructions.
 To complete this step, you **must** have the correct GitHub usernames for all of you team members.
  
-Finally, have ONE PERSON on your team head over to [register.eecs183.org](http://register.eecs183.org/) to sign your team up for a GitHub repository. Fill out all of the necessary information. For project, select **Arduino** from the drop-down menu.  If you receive the message "Submission has been recorded! Thank You!", then you are done. AGAIN, YOU SHOULD ONLY SUBMIT ONCE PER TEAM. If you have some issues, the website will alert you of the fields that were incorrectly filled out. Correct any mistakes and submit again. Continue until you see the message above. If you are having trouble with this form, post on Piazza to get help.
+Have ONE PERSON on your team sign your team up for a GitHub repository. The signup page will be announced on the course website.
 
 
 # Project Submission
