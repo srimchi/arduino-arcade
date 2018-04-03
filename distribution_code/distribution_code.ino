@@ -66,25 +66,38 @@ class Invader {
     }
     // sets values for private date members x and y
     Invader(int x_arg, int y_arg) {
+      x = x_arg; 
+      y = y_arg; 
     }
     // sets values for private data members
     Invader(int x_arg, int y_arg, int strength_arg) {
+      x = x_arg; 
+      y = y_arg; 
+      strength = strength_arg; 
     }
     // sets values for private data members
     void initialize(int x_arg, int y_arg, int strength_arg) {
+      x = x_arg; 
+      y = y_arg; 
+      strength = strength_arg; 
     }
     
     // getters
     int get_x() const {
+      return x; 
     }
     int get_y() const {
+      return y; 
     }
     int get_strength() const {
+      return strength; 
     }
 
     // Moves the Invader down the screen by one row
     // Modifies: y
     void move() {
+      y++; 
+      // IDK IF THIS IS RIGHT!!!! 
     }
     
     // draws the Invader if its strength is greater than 0
@@ -123,18 +136,24 @@ class Cannonball {
     
     // resets private data members to initial values
     void reset() {
+      Cannonball(); 
     }
     
     // getters
     int get_x() const {
+      return x; 
     }
     int get_y() const {
+      return y; 
     }
     bool has_been_fired() const {
+      return true; 
     }
     
     // sets private data members
     void fire(int x_arg, int y_arg) {
+      x = x_arg; 
+      y = y_arg; 
     }
     
     // moves the Cannonball and detects if it goes off the screen
@@ -144,6 +163,7 @@ class Cannonball {
     
     // resets private data members to initial values
     void hit() {
+      Cannonball(); 
     }
     
     // draws the Cannonball, if it is fired
@@ -170,14 +190,18 @@ class Player {
     
     // getters
     int get_x() const {
+      return x; 
     }
     int get_y() const {
+      return y; 
     }
     int get_lives() const {
+      return lives; 
     }
     
     // setter
     void set_x(int x_arg) {
+      x = x_arg; 
     }
     
     // Modifies: lives
@@ -201,6 +225,8 @@ class Player {
 
     // sets private data members x and y to initial values
     void initialize(int x_arg, int y_arg) {
+      x = x_arg; 
+      y = y_arg; 
     }
     
     // draws the player
