@@ -97,23 +97,50 @@ class Invader {
     // Modifies: y
     void move() {
       y++; 
-      // IDK IF THIS IS RIGHT!!!! 
+      // IDK IF THIS IS RIGHT!!!! Boundaries --> reaching the end, game over...
     }
     
     // draws the Invader if its strength is greater than 0
     // calls: draw_with_rgb
     void draw() {
+      if (strength > 0){
+        if (strength == 7) {
+          draw_with_rgb(WHITE,BLUE);
+        }
+        if (strength == 6) {
+          draw_with_rgb(PURPLE,BLUE);
+        }
+        if (strength == 5) {
+          draw_with_rgb(BLUE,BLUE);
+        }
+        if (strength == 4) {
+          draw_with_rgb(GREEN,BLUE);
+        }
+        if (strength == 3) {
+          draw_with_rgb(YELLOW,BLUE);
+        }
+        if (strength == 2) {
+          draw_with_rgb(ORANGE,BLUE);
+        }
+        if (strength == 1) {
+          draw_with_rgb(RED,BLUE);
+        }
+      }
     }
     
     // draws black where the Invader used to be
     // calls: draw_with_rgb
     void erase() {
+      draw_with_rgb(BLACK, BLACK);
     }    
     
     // Invader is hit by a Cannonball.
     // Modifies: strength
     // calls: draw, erase
     void hit() {
+      erase();
+      strength--;
+      draw();
     }
 
   private:
@@ -123,6 +150,18 @@ class Invader {
     
     // draws the Invader
     void draw_with_rgb(Color body_color, Color eye_color) {
+      matrix.drawPixel(x, y, body_color);
+      matrix.drawPixel(x+1, y, body_color);
+      matrix.drawPixel(x-1, y+1, body_color);
+      matrix.drawPixel(x, y+1, eye_color);
+      matrix.drawPixel(x+1, y+1, eye_color);
+      matrix.drawPixel(x+2, y+1, body_color);
+      matrix.drawPixel(x-1, y+2, body_color);
+      matrix.drawPixel(x, y+2, body_color);
+      matrix.drawPixel(x+1, y+2, body_color);
+      matrix.drawPixel(x+2, y+2, body_color);
+      matrix.drawPixel(x-1, y+3, body_color);
+      matrix.drawPixel(x+2, y+3, body_color);
     }
 };
 
@@ -158,7 +197,12 @@ class Cannonball {
     
     // moves the Cannonball and detects if it goes off the screen
     // Modifies: y, fired
+    //
     void move() {
+      fired = true;
+      for(int i = x ; i < 16; i++){
+        if (//figure out how to get pixel color matrix[x][y].)
+      }
     }
     
     // resets private data members to initial values
