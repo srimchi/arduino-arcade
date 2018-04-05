@@ -5,7 +5,6 @@
 #include <Adafruit_SPITFT.h>
 #include <Adafruit_SPITFT_Macros.h>
 #include <gfxfont.h>
-
 //STILL NEED TO DO: wire everything properly, reset, logic of the game, hit for Invader, move for cannonball, die for player, setup for level 5 and beyond
 
 // define the wiring of the LED screen
@@ -156,12 +155,10 @@ class Invader {
     // Modifies: strength
     // calls: draw, erase
     void hit() {
-      // FIXME if (!matrix[x - 1][y + 4].black_color()) {
-          erase();
-          strength--;
-          draw();
-
-      //}
+          
+        erase();
+        strength--;
+        draw();
     }
 
   private:
@@ -221,7 +218,6 @@ class Cannonball {
     //
     void move() {
       fired = true;
-      //what if it hits a space invader.....
       for(int i = x ; i < 16; i++) {
         if(y > 0) {
           erase();
@@ -285,8 +281,9 @@ class Player {
     
     // Modifies: lives
     void die() {
-      //what if hits space invader
-      lives--;
+      if (lives > 0) {
+        lives--;
+      }
     }
     
     // draws the Player
@@ -324,19 +321,23 @@ class Player {
 class Game {
   public:
     Game() {
-      level = 0;
+      level = 5;
       time = 0;
     }
     
     // sets up a new game of Space Invaders
     // Modifies: global variable matrix
     // see http://arduino.cc/en/Reference/Setup
+    
+    //WHY??
+    int random_num(){
+      return random(1, 7); 
+      }
     void setup() {
      
       print_lives(player.get_lives());
       delay(3000);
       matrix.fillScreen(BLACK.to_333());
-      level = 4;
       print_level(level);
       delay(3000);
       matrix.fillScreen(BLACK.to_333());
@@ -346,7 +347,7 @@ class Game {
         int x = 1;
         enemies[0].initialize(x, 0, 1);
         enemies[0].draw();
-        for(int i = 1; i < 9; i++){
+        for(int i = 1; i < 8; i++){
           x = x + 4;
           enemies[i].initialize(x, 0, 1);
           enemies[i].draw();
@@ -359,7 +360,7 @@ class Game {
         enemies[0].initialize(x, 0, 1);
         enemies[0].draw();
         count++;
-        for(int i = 1; i < 9; i++){
+        for(int i = 1; i < 8; i++){
           x = x + 4;
           if(count % 2 != 0){
             enemies[i].initialize(x, 0, 1);
@@ -375,7 +376,6 @@ class Game {
         x = 1;
         enemies[8].initialize(x, 5, 2);
         enemies[8].draw();
-        count++;
         for(int i = 9; i < 16; i++){
           x = x + 4;
           if(count % 2 != 0){
@@ -397,7 +397,7 @@ class Game {
         enemies[0].initialize(x, 0, count);
         enemies[0].draw();
         count++;
-        for(int i = 1; i < 9; i++){
+        for(int i = 1; i < 8; i++){
           x = x + 4;
           if (count == 6) {
             count = 1;
@@ -407,7 +407,6 @@ class Game {
           count++;
         }
         x = 1;
-        count = 4;
         enemies[8].initialize(x, 5, count);
         enemies[8].draw();
         count++;
@@ -428,7 +427,7 @@ class Game {
         enemies[0].initialize(x, 0, 5);
         enemies[0].draw();
         count++;
-        for(int i = 1; i < 9; i++){
+        for(int i = 1; i < 8; i++){
           x = x + 4;
           if(count % 2 != 0){
             enemies[i].initialize(x, 0, 5);
@@ -444,7 +443,6 @@ class Game {
         x = 1;
         enemies[8].initialize(x, 5, 2);
         enemies[8].draw();
-        count++;
         for(int i = 9; i < NUM_ENEMIES; i++){
           x = x + 4;
           if(count % 2 != 0){
@@ -460,6 +458,25 @@ class Game {
         }
       }
       //level 5 and beyond...how to do random for setup
+      if(level >= 5){
+        int x = 1;
+        enemies[0].initialize(x, 0, random_num());
+        enemies[0].draw();
+        for(int i = 1; i < 8; i++){
+          x = x + 4;
+          enemies[i].initialize(x, 0, random_num());
+          enemies[i].draw();
+        }
+        x = 1;
+        enemies[8].initialize(x, 5, random_num());
+        enemies[8].draw();
+        for(int i = 9; i < NUM_ENEMIES; i++){
+          x = x + 4;
+          enemies[i].initialize(x, 5, random_num());
+          enemies[i].draw();
+        }
+      }
+      matrix.drawPixel(13, 1, BLUE.to_333());
       player.draw();
       
     }
@@ -498,7 +515,10 @@ class Game {
 
     // set up a level
     void reset_level() {
-      //FIGURE IT OUT LATER
+ 
+      if(player.get_lives() != 0){
+        setup();
+      }
     }
 };
 
@@ -524,11 +544,11 @@ void loop() {
 // displays Level
 void print_level(int level) {
   matrix.setCursor(1, 0);
-  matrix.setTextColor(GREEN.to_333());
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print("LEVEL");
   matrix.setCursor(13, 9);
-  matrix.setTextColor(GREEN.to_333());
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print(level);
 }
@@ -536,11 +556,11 @@ void print_level(int level) {
 // displays number of lives
 void print_lives(int lives) {
   matrix.setCursor(1, 0);
-  matrix.setTextColor(GREEN.to_333());
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print("LIVES");
   matrix.setCursor(13, 9);
-  matrix.setTextColor(GREEN.to_333());
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print(lives);
 }
