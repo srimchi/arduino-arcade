@@ -40,6 +40,14 @@ class Color {
       green = g;
       blue = b;
     }
+    bool black_color(){
+      if(red == 0 && green == 0 && blue == 0){
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
     uint16_t to_333() const {
       return matrix.Color333(red, green, blue);
     }
@@ -96,8 +104,14 @@ class Invader {
     // Moves the Invader down the screen by one row
     // Modifies: y
     void move() {
-      y++; 
-      // IDK IF THIS IS RIGHT!!!! Boundaries --> reaching the end, game over...
+      if (strength > 0){
+        erase();
+        y++;
+      }
+      if(y > 13) {
+        game_over();
+      }
+      draw();
     }
     
     // draws the Invader if its strength is greater than 0
@@ -125,6 +139,12 @@ class Invader {
         if (strength == 1) {
           draw_with_rgb(RED,BLUE);
         }
+        if (strength == 0) {
+          erase();
+        }
+        if (y > 13){
+          erase();
+        }
       }
     }
     
@@ -138,9 +158,11 @@ class Invader {
     // Modifies: strength
     // calls: draw, erase
     void hit() {
-      erase();
-      strength--;
-      draw();
+      // FIXME if (!matrix[x - 1][y + 4].black_color()) {
+          erase();
+          strength--;
+          draw();
+      }
     }
 
   private:
@@ -151,17 +173,17 @@ class Invader {
     // draws the Invader
     void draw_with_rgb(Color body_color, Color eye_color) {
       matrix.drawPixel(x, y, body_color.to_333());
-      matrix.drawPixel(x+1, y, body_color.to_333());
-      matrix.drawPixel(x-1, y+1, body_color.to_333());
-      matrix.drawPixel(x, y+1, eye_color.to_333());
-      matrix.drawPixel(x+1, y+1, eye_color.to_333());
-      matrix.drawPixel(x+2, y+1, body_color.to_333());
-      matrix.drawPixel(x-1, y+2, body_color.to_333());
-      matrix.drawPixel(x, y+2, body_color.to_333());
-      matrix.drawPixel(x+1, y+2, body_color.to_333());
-      matrix.drawPixel(x+2, y+2, body_color.to_333());
-      matrix.drawPixel(x-1, y+3, body_color.to_333());
-      matrix.drawPixel(x+2, y+3, body_color.to_333());
+      matrix.drawPixel(x + 1, y, body_color.to_333());
+      matrix.drawPixel(x - 1, y + 1, body_color.to_333());
+      matrix.drawPixel(x, y + 1, eye_color.to_333());
+      matrix.drawPixel(x + 1, y + 1, eye_color.to_333());
+      matrix.drawPixel(x + 2, y + 1, body_color.to_333());
+      matrix.drawPixel(x - 1, y + 2, body_color.to_333());
+      matrix.drawPixel(x, y + 2, body_color.to_333());
+      matrix.drawPixel(x + 1, y + 2, body_color.to_333());
+      matrix.drawPixel(x + 2, y + 2, body_color.to_333());
+      matrix.drawPixel(x - 1, y + 3, body_color.to_333());
+      matrix.drawPixel(x + 2, y + 3, body_color.to_333());
     }
 };
 
@@ -200,8 +222,16 @@ class Cannonball {
     //
     void move() {
       fired = true;
+      //what if it hits a space invader.....
       for(int i = x ; i < 16; i++) {
-        if (//figure out how to get pixel color matrix[x][y].)
+        if(y > 0) {
+          erase();
+          y--;
+          draw();
+        }
+        else {
+          erase();
+        }
       }
     }
     
@@ -212,10 +242,16 @@ class Cannonball {
     
     // draws the Cannonball, if it is fired
     void draw() {
+      if(fired){
+        matrix.drawPixel(x, y, ORANGE.to_333());
+        matrix.drawPixel(x, y + 1, ORANGE.to_333());
+      }
     }
     
     // draws black where the Cannonball used to be
     void erase() {
+      matrix.drawPixel(x, y, BLACK.to_333());
+      matrix.drawPixel(x, y + 1, BLACK.to333());
     }
 
   private:
@@ -250,16 +286,20 @@ class Player {
     
     // Modifies: lives
     void die() {
+      //what if hits space invader
+      lives--;
     }
     
     // draws the Player
     // calls: draw_with_rgb
     void draw() {
+      draw_with_rgb(AQUA);
     }
     
     // draws black where the Player used to be
     // calls: draw_with_rgb
     void erase() {
+      draw_with_rgb(BLACK);
     }
 
   private:
@@ -275,6 +315,10 @@ class Player {
     
     // draws the player
     void draw_with_rgb(Color color) {
+      matrix.drawPixel(x, y, AQUA.to_333());
+      matrix.drawPixel(x - 1, y + 1, AQUA.to_333());
+      matrix.drawPixel(x, y + 1, AQUA.to_333());
+      matrix.drawPixel(x + 1, y + 1, AQUA.to_333());
     }
 };
 
@@ -333,19 +377,42 @@ void loop() {
 
 // displays Level
 void print_level(int level) {
+  matrix.setCursor(5, 9);
+  matrix.setTextColor(WHITE);
+  matrix.setTextSize(1);
+  matrix.print("LEVEL");
+  matrix.setCursor(7, 18);
+  matrix.setTextColor(WHITE);
+  matrix.setTextSize(1);
+  matrix.print(level);
 }
 
 // displays number of lives
 void print_lives(int lives) {
+  matrix.setCursor(5, 9);
+  matrix.setTextColor(WHITE);
+  matrix.setTextSize(1);
+  matrix.print("LIVES");
+  matrix.setCursor(7, 18);
+  matrix.setTextColor(WHITE);
+  matrix.setTextSize(1);
+  matrix.print(lives);
 }
 
 // displays "game over"
 void game_over() {
-  matrix.print('G'); 
-  matrix.print('A'); 
-  matrix.print('M'); 
-  matrix.print('E'); 
+  matrix.setCursor(3, 9);
+  matrix.setTextColor(WHITE);
+  matrix.setTextSize(1);
+  matrix.print("GAME OVER");
+  //matrix.print('G'); 
+  //matrix.print('A'); 
+  //matrix.print('M'); 
+  //matrix.print('E'); 
+  //matrix.print(' ');
+  //matrix.print('O');
+  //matrix.print('V');
+  //matrix.print('E');
+  //matrix.print('R');
 }
-}
-}; 
 
