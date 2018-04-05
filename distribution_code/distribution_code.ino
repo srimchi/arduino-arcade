@@ -5,8 +5,11 @@
 #include <Adafruit_SPITFT.h>
 #include <Adafruit_SPITFT_Macros.h>
 #include <gfxfont.h>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ff832228e72b15dac0e99fb8e4cf1eabbf956038
 
 // define the wiring of the LED screen
 const uint8_t CLK  = 8;
@@ -168,8 +171,13 @@ class Invader {
           erase();
           strength--;
           draw();
+<<<<<<< HEAD
       }
    
+=======
+      
+    }
+>>>>>>> ff832228e72b15dac0e99fb8e4cf1eabbf956038
 
   private:
     int x;
