@@ -6,6 +6,8 @@
 #include <Adafruit_SPITFT_Macros.h>
 #include <gfxfont.h>
 
+//STILL NEED TO DO: wire everything properly, reset, logic of the game, hit for Invader, move for cannonball, die for player, setup for level 5 and beyond
+
 // define the wiring of the LED screen
 const uint8_t CLK  = 8;
 const uint8_t LAT = A3;
@@ -43,14 +45,6 @@ class Color {
       red = r;
       green = g;
       blue = b;
-    }
-    bool black_color(){
-      if(red == 0 && green == 0 && blue == 0){
-        return true;
-      }
-      else {
-        return false;
-      }
     }
     uint16_t to_333() const {
       return matrix.Color333(red, green, blue);
@@ -166,7 +160,6 @@ class Invader {
           erase();
           strength--;
           draw();
-      
     }
 
   private:
@@ -267,8 +260,8 @@ class Cannonball {
 class Player {
   public:
     Player() {
-      x = 0;
-      y = 0;
+      x = 15;
+      y = 14;
       lives = 3;
     }
     
@@ -337,12 +330,143 @@ class Game {
     // Modifies: global variable matrix
     // see http://arduino.cc/en/Reference/Setup
     void setup() {
+     
+      print_lives(player.get_lives());
+      delay(3000);
+      matrix.fillScreen(BLACK.to_333());
+      level = 4;
+      print_level(level);
+      delay(3000);
+      matrix.fillScreen(BLACK.to_333());
+      
+      //level one invader setup
+      if(level == 1){
+        int x = 1;
+        enemies[0].initialize(x, 0, 1);
+        enemies[0].draw();
+        for(int i = 1; i < 9; i++){
+          x = x + 4;
+          enemies[i].initialize(x, 0, 1);
+          enemies[i].draw();
+        }
+      }
+
+      if(level == 2){
+        int x = 1;
+        int count = 1;
+        enemies[0].initialize(x, 0, 1);
+        enemies[0].draw();
+        count++;
+        for(int i = 1; i < 9; i++){
+          x = x + 4;
+          if(count % 2 != 0){
+            enemies[i].initialize(x, 0, 1);
+            enemies[i].draw();
+            count++;
+          }
+          else {
+            enemies[i].initialize(x, 0, 2);
+            enemies[i].draw();
+            count++;
+          }
+        }
+        x = 1;
+        enemies[8].initialize(x, 5, 2);
+        enemies[8].draw();
+        count++;
+        for(int i = 9; i < 16; i++){
+          x = x + 4;
+          if(count % 2 != 0){
+            enemies[i].initialize(x, 5, 1);
+            enemies[i].draw();
+            count++;
+          }
+          else {
+            enemies[i].initialize(x, 5, 2);
+            enemies[i].draw();
+            count++;
+          }
+        }
+      }
+
+      if(level == 3){
+        int x = 1;
+        int count = 1;
+        enemies[0].initialize(x, 0, count);
+        enemies[0].draw();
+        count++;
+        for(int i = 1; i < 9; i++){
+          x = x + 4;
+          if (count == 6) {
+            count = 1;
+          }
+          enemies[i].initialize(x, 0, count);
+          enemies[i].draw();
+          count++;
+        }
+        x = 1;
+        count = 4;
+        enemies[8].initialize(x, 5, count);
+        enemies[8].draw();
+        count++;
+        for(int i = 9; i < 16; i++){
+          x = x + 4;
+          if (count == 6) {
+            count = 1;
+          }
+          enemies[i].initialize(x, 5, count);
+          enemies[i].draw();
+          count++;
+        }
+      }
+
+      if(level == 4){
+        int x = 1;
+        int count = 1;
+        enemies[0].initialize(x, 0, 5);
+        enemies[0].draw();
+        count++;
+        for(int i = 1; i < 9; i++){
+          x = x + 4;
+          if(count % 2 != 0){
+            enemies[i].initialize(x, 0, 5);
+            enemies[i].draw();
+            count++;
+          }
+          else {
+            enemies[i].initialize(x, 0, 4);
+            enemies[i].draw();
+            count++;
+          }
+        }
+        x = 1;
+        enemies[8].initialize(x, 5, 2);
+        enemies[8].draw();
+        count++;
+        for(int i = 9; i < NUM_ENEMIES; i++){
+          x = x + 4;
+          if(count % 2 != 0){
+            enemies[i].initialize(x, 5, 3);
+            enemies[i].draw();
+            count++;
+          }
+          else {
+            enemies[i].initialize(x, 5, 2);
+            enemies[i].draw();
+            count++;
+          }
+        }
+      }
+      //level 5 and beyond...how to do random for setup
+      player.draw();
+      
     }
     
     // advances the game simulation one step and renders the graphics
     // see spec for details of game
     // Modifies: global variable matrix
     void update(int potentiometer_value, bool button_pressed) {
+      //WRITE CODE HERE FOR PLAYING THE GAME!!
     }
 
   private:
@@ -354,10 +478,25 @@ class Game {
 
     // check if Player defeated all Invaders in current level
     bool level_cleared() {
+      if(level == 1){
+        for(int i = 0; i < 9; i++){
+          if(enemies[i].get_strength() != 0){
+            return false;  
+          }
+        }
+      }
+      else {
+        for(int i = 0; i < NUM_ENEMIES; i++){
+          if(enemies[i].get_strength() != 0)
+            return false;
+        }
+      }
+      return true;
     }
 
     // set up a level
     void reset_level() {
+      //FIGURE IT OUT LATER
     }
 };
 
@@ -369,6 +508,7 @@ void setup() {
   Serial.begin(9600);
   pinMode(BUTTON_PIN_NUMBER, INPUT);
   matrix.begin();
+  game.setup();
 }
 
 // see https://www.arduino.cc/reference/en/language/structure/sketch/loop/
@@ -381,24 +521,24 @@ void loop() {
 
 // displays Level
 void print_level(int level) {
-  matrix.setCursor(5, 9);
-  matrix.setTextColor(WHITE.to_333());
+  matrix.setCursor(1, 0);
+  matrix.setTextColor(GREEN.to_333());
   matrix.setTextSize(1);
   matrix.print("LEVEL");
-  matrix.setCursor(7, 18);
-  matrix.setTextColor(WHITE.to_333());
+  matrix.setCursor(13, 9);
+  matrix.setTextColor(GREEN.to_333());
   matrix.setTextSize(1);
   matrix.print(level);
 }
 
 // displays number of lives
 void print_lives(int lives) {
-  matrix.setCursor(5, 9);
-  matrix.setTextColor(WHITE.to_333());
+  matrix.setCursor(1, 0);
+  matrix.setTextColor(GREEN.to_333());
   matrix.setTextSize(1);
   matrix.print("LIVES");
-  matrix.setCursor(7, 18);
-  matrix.setTextColor(WHITE.to_333());
+  matrix.setCursor(13, 9);
+  matrix.setTextColor(GREEN.to_333());
   matrix.setTextSize(1);
   matrix.print(lives);
 }
