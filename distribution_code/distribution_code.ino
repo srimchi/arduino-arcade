@@ -1,6 +1,12 @@
 #include <gamma.h>
 #include <RGBmatrixPanel.h>
+
 #include <Adafruit_GFX.h>
+#include <Adafruit_SPITFT.h>
+#include <Adafruit_SPITFT_Macros.h>
+#include <gfxfont.h>
+
+
 
 // define the wiring of the LED screen
 const uint8_t CLK  = 8;
@@ -163,7 +169,7 @@ class Invader {
           strength--;
           draw();
       }
-    }
+   
 
   private:
     int x;
@@ -251,7 +257,7 @@ class Cannonball {
     // draws black where the Cannonball used to be
     void erase() {
       matrix.drawPixel(x, y, BLACK.to_333());
-      matrix.drawPixel(x, y + 1, BLACK.to333());
+      matrix.drawPixel(x, y + 1, BLACK.to_333());
     }
 
   private:
@@ -378,11 +384,11 @@ void loop() {
 // displays Level
 void print_level(int level) {
   matrix.setCursor(5, 9);
-  matrix.setTextColor(WHITE);
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print("LEVEL");
   matrix.setCursor(7, 18);
-  matrix.setTextColor(WHITE);
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print(level);
 }
@@ -390,11 +396,11 @@ void print_level(int level) {
 // displays number of lives
 void print_lives(int lives) {
   matrix.setCursor(5, 9);
-  matrix.setTextColor(WHITE);
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print("LIVES");
   matrix.setCursor(7, 18);
-  matrix.setTextColor(WHITE);
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print(lives);
 }
@@ -402,17 +408,9 @@ void print_lives(int lives) {
 // displays "game over"
 void game_over() {
   matrix.setCursor(3, 9);
-  matrix.setTextColor(WHITE);
+  matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print("GAME OVER");
-  //matrix.print('G'); 
-  //matrix.print('A'); 
-  //matrix.print('M'); 
-  //matrix.print('E'); 
-  //matrix.print(' ');
-  //matrix.print('O');
-  //matrix.print('V');
-  //matrix.print('E');
-  //matrix.print('R');
+
 }
 
