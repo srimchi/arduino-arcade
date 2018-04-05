@@ -5,6 +5,11 @@
 #include <Adafruit_SPITFT.h>
 #include <Adafruit_SPITFT_Macros.h>
 #include <gfxfont.h>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> ff832228e72b15dac0e99fb8e4cf1eabbf956038
 
 //STILL NEED TO DO: wire everything properly, reset, logic of the game, hit for Invader, move for cannonball, die for player, setup for level 5 and beyond
 
@@ -160,7 +165,16 @@ class Invader {
           erase();
           strength--;
           draw();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      }
+   
+=======
+      
+>>>>>>> 7c133d7b2e93dec4770d3f16769124cf72ab4e5e
     }
+>>>>>>> ff832228e72b15dac0e99fb8e4cf1eabbf956038
 
   private:
     int x;
