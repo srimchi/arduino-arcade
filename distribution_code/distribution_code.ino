@@ -322,7 +322,7 @@ class Game {
     Game() {
       level = 1;
       time = 0; 
-      //invaderTime = 0; 
+      invaderTime = 0; 
     }
     
     // sets up a new game of Space Invaders
@@ -332,6 +332,21 @@ class Game {
     int random_num(){
       return random(1, 7); 
       }
+
+    void createInvaders()
+    {
+      int invaderPeriod = 1000;
+      int invaderCurrentTime = millis(); 
+      if((unsigned long)(invaderCurrentTime - invaderTime)>= 1000)
+         {
+          for(int i = 0; i < 8; i++)
+          {
+            enemies[i].draw();
+          }
+        }
+        invaderTime = millis(); 
+    }
+    
     void setup() {
      
       print_lives(player.get_lives());
@@ -485,7 +500,8 @@ class Game {
       void update(int potentiometer_value, bool button_pressed){ 
       int period = 100; 
       long currentTime = millis(); 
-      if((unsigned long)(currentTime-time) >= period)
+      //((unsigned long)(currentTime-time) >= period)
+      if(((unsigned long)(currentTime-time) >= period))
       {
       player.erase();
       if ((potentiometer_value / 32) > player.get_x()){
@@ -498,8 +514,8 @@ class Game {
         player.set_x(player.get_x()); 
       }
       player.draw();
-      //time = millis(); 
-      }
+     dtime = millis(); 
+      
       
       if(button_pressed == true){
         for(int i = 0; i < 1; i++)
@@ -624,9 +640,9 @@ class Game {
           }
           
         }
-        //int invaderPeriod = 1000;
-        //int invaderCurrentTime = millis(); 
-        if((unsigned long)(currentTime - time)>= 1000)
+      }
+      currentTime = millis(); 
+      if(millis() % 1000 == 0)
          {
           for(int i = 0; i < 8; i++)
           {
@@ -634,15 +650,15 @@ class Game {
           }
         }
         time = millis();
+      }
 
       }
       
-    }
 
   private:
     int level;
     unsigned long time;
-    //unsigned long invaderTime; 
+    unsigned long invaderTime; 
     Player player;
     Cannonball ball;
     Invader enemies[NUM_ENEMIES];
