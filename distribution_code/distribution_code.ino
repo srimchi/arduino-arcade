@@ -154,6 +154,24 @@ class Invader {
         draw();
     }
 
+    bool check_if_hit(int x_in, int y_in) {
+      if (x_in == x - 1 && y_in == y + 3) {
+          return true;
+      }
+      else if (x_in == x && y_in == y + 2) {
+          return true;
+      }
+      else if (x_in == x + 1 && y_in == y + 2) {
+          return true;
+      }
+      else if (x_in == x + 2 && y_in == y + 3) {
+          return true;
+      }
+      else {
+        return false;
+      }
+    }
+
   private:
     int x;
     int y;
@@ -242,6 +260,12 @@ class Cannonball {
       matrix.drawPixel(x, y + 1, BLACK.to_333());
     }
 
+    bool check_hit_invader(const Invader &enemy) {
+      if (enemy.check_if_hit(x, y) == true) {
+        return true;
+      }
+    }
+
   private:
     int x;
     int y;
@@ -291,6 +315,18 @@ class Player {
       draw_with_rgb(BLACK);
     }
 
+    bool check_hit_invader(const Invader &enemy) {
+       if (enemy.check_if_hit(x, y) == true) {
+          return true;
+       }
+       else if (enemy.check_if_hit(x - 1, y + 1) == true) {
+          return true;
+       }
+       else if (enemy.check_if_hit(x + 1, y + 1) == true) {
+          return true;
+       }
+    }
+
   private:
     int x;
     int y;
@@ -324,7 +360,8 @@ class Game {
     
     int random_num(){
       return random(1, 7); 
-      }
+    }
+    
     void setup() {
      
       print_lives(player.get_lives());
@@ -478,32 +515,26 @@ class Game {
     // Modifies: global variable matrix
     void update(int potentiometer_value, bool button_pressed) {
 
-      if(button_pressed){
+      if(button_pressed) {
         ball.fire(player.get_x(), player.get_y() - 1);
         ball.move();
       }
 
       if(level > 1){
         for(int i = 8; i < 16; i++){
-          if(enemies[i].get_y() + 3 == 15){
+          if(enemies[i].get_y() + 3 == 15) {
             player.die();
             reset_level();
             break;
             
           }
-          else if((player.get_x() + 1 == enemies[i].get_x() - 1 && player.get_y() + 1 == enemies[i].get_y() + 3) || 
-          (player.get_x() == enemies[i].get_x() - 1 && player.get_y() == enemies[i].get_y() + 3) || 
-          (player.get_x() == enemies[i].get_x() && player.get_y() == enemies[i].get_y() + 2) || 
-          (player.get_x() == enemies[i].get_x() + 1 && player.get_y() == enemies[i].get_y() + 2) || 
-          (player.get_x() == enemies[i].get_x() + 2 && player.get_y() == enemies[i].get_y() + 3) || 
-          (player.get_x() - 1 == enemies[i].get_x() + 2 && player.get_y() - 1 == enemies[i].get_y() + 3)){
+          else if(player.check_hit_invader(enemies[i])){
             player.die();
             reset_level();
             break;
             
           }
-          else if((ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() - 1)) || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x()))
-          || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x() + 1)) || (ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() + 2))){
+          else if(ball.check_hit_invader(enemies[i])) {
             enemies[i].hit();
             ball.hit();  
           }
@@ -518,41 +549,37 @@ class Game {
 
         int count_strength = 0;
         for(int i = 8; i < 16; i++){
-          if(enemies[i].get_strength() == 0){
+          if(enemies[i].get_strength() == 0) {
             count_strength++;
           }
        }
 
        if(count_strength == 8){
          for(int i = 0; i < 8; i++){
-          if(enemies[i].get_y() + 3 == 15){
+          if(enemies[i].get_y() + 3 == 15) {
             player.die();
             reset_level();
             break;
             
           }
-          else if((player.get_x() + 1 == enemies[i].get_x() - 1 && player.get_y() + 1 == enemies[i].get_y() + 3) || 
-          (player.get_x() == enemies[i].get_x() - 1 && player.get_y() == enemies[i].get_y() + 3) || 
-          (player.get_x() == enemies[i].get_x() && player.get_y() == enemies[i].get_y() + 2) || 
-          (player.get_x() == enemies[i].get_x() + 1 && player.get_y() == enemies[i].get_y() + 2) || 
-          (player.get_x() == enemies[i].get_x() + 2 && player.get_y() == enemies[i].get_y() + 3) || 
-          (player.get_x() - 1 == enemies[i].get_x() + 2 && player.get_y() - 1 == enemies[i].get_y() + 3)){
+          else if(player.check_hit_invader(enemies[i])) {
             player.die();
             reset_level();
             break;
             
           }
-          else if((ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() - 1)) || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x()))
-          || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x() + 1)) || (ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() + 2))){
+          else if(ball.check_hit_invader(enemies[i])) {
             enemies[i].hit();
             ball.erase();  
+            
           }
           else{
             enemies[i].move();
+            
           }
           
         }
-        for(int i = 0; i < 8; i++){
+        for(int i = 0; i < 8; i++) {
           enemies[i].draw();
         }
        }
@@ -560,36 +587,33 @@ class Game {
       }
       else {
         for(int i = 0; i < 8; i++){
-          if(enemies[i].get_y() + 3 == 15){
+          if(enemies[i].get_y() + 3 == 15) {
             player.die();
             reset_level();
             break;
             
           }
-          else if((player.get_x() + 1 == enemies[i].get_x() - 1 && player.get_y() + 1 == enemies[i].get_y() + 3) || 
-          (player.get_x() == enemies[i].get_x() - 1 && player.get_y() == enemies[i].get_y() + 3) || 
-          (player.get_x() == enemies[i].get_x() && player.get_y() == enemies[i].get_y() + 2) || 
-          (player.get_x() == enemies[i].get_x() + 1 && player.get_y() == enemies[i].get_y() + 2) || 
-          (player.get_x() == enemies[i].get_x() + 2 && player.get_y() == enemies[i].get_y() + 3) || 
-          (player.get_x() - 1 == enemies[i].get_x() + 2 && player.get_y() - 1 == enemies[i].get_y() + 3)){
+          else if(player.check_hit_invader(enemies[i])) {
             player.die();
             reset_level();
             break;
             
           }
-          else if((ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() - 1)) || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x()))
-          || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x() + 1)) || (ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() + 2))){
+          else if(ball.check_hit_invader(enemies[i])) {
             enemies[i].hit();
             ball.hit();  
+            
           }
           else{
             enemies[i].move();
+            
           }
           
         }
         
         for(int i = 0; i < 8; i++){
           enemies[i].draw();
+          
         }
       }
       
@@ -649,8 +673,8 @@ void setup() {
 void loop() {
   int potentiometer_value = analogRead(POTENTIOMETER_PIN_NUMBER);
   bool button_pressed = (digitalRead(BUTTON_PIN_NUMBER) == HIGH);
-  delay(1000);
   game.update(potentiometer_value, button_pressed);
+  
 }
 
 // displays Level
@@ -690,5 +714,6 @@ void game_over() {
   matrix.print("OVER");
 
 }
+
 
 
