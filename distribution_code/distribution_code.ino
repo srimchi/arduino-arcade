@@ -5,7 +5,6 @@
 #include <Adafruit_SPITFT.h>
 #include <Adafruit_SPITFT_Macros.h>
 #include <gfxfont.h>
-//STILL NEED TO DO: logic of the game
 
 // define the wiring of the LED screen
 const uint8_t CLK  = 8;
@@ -148,9 +147,9 @@ class Invader {
     // Modifies: strength
     // calls: draw, erase
     void hit() {
-
-      erase();
+      
       strength--;
+      erase();
       draw();
     }
 
@@ -179,8 +178,7 @@ class Invader {
 class Cannonball {
   public:
     Cannonball() {
-      x = 0;
-      y = 0;
+
       fired = false;
     }
 
@@ -197,7 +195,7 @@ class Cannonball {
       return y;
     }
     bool has_been_fired() const {
-      return true;
+      return fired;
     }
 
     // sets private data members
@@ -211,30 +209,26 @@ class Cannonball {
     // Modifies: y, fired
     //
     void move() {
-      int temp = y;
-      for (int i = temp ; i < 16; i++) {
-        draw();
-        erase();
-        if (y > -1) {
+      if (y > -1) {
           y--;
-          draw();
         }
-      }
+        else {
+          fired = false;
+        }
     }
 
     // resets private data members to initial values
     void hit() {
-      x = 0;
-      y = 0;
+    
       fired = false;
     }
 
     // draws the Cannonball, if it is fired
     void draw() {
-      if (fired) {
+      //if (fired) {
         matrix.drawPixel(x, y, ORANGE.to_333());
         matrix.drawPixel(x, y + 1, ORANGE.to_333());
-      }
+      //}
     }
 
     // draws black where the Cannonball used to be
@@ -271,6 +265,9 @@ class Player {
     // setter
     void set_x(int x_arg) {
       x = x_arg;
+    }
+    void set_lives(int lives){
+      lives = lives;
     }
 
     // Modifies: lives
@@ -328,6 +325,10 @@ class Game {
       return random(1, 7);
     }
     void setup() {
+      if (player.get_lives() == 0){
+        level = 1;
+        player.set_lives(3);
+      }
 
       print_lives(player.get_lives());
       delay(3000);
@@ -477,6 +478,8 @@ class Game {
     // see spec for details of game
     // Modifies: global variable matrix
     void update(int potentiometer_value, bool button_pressed) {
+
+     
       int time_passed = millis();
       player.erase();
       if ((potentiometer_value / 32) > player.get_x()) {
@@ -490,16 +493,17 @@ class Game {
       }
       player.draw();
 
-      int ball_curr_time = millis();
-      if (button_pressed == true) {
+      long ball_curr_time = millis();
+      if (button_pressed == true && ball.has_been_fired() == false) {
         ball.fire(player.get_x(), player.get_y() - 2);
-        ball.draw();
-        if(ball_curr_time - time_ball > 50){
+        if(ball_curr_time - time_ball > 10){
+          ball.erase();
           ball.move();
+          ball.draw();
         }
         time_ball = millis();
       }
-
+  
       int period = 1000;
       if (time_passed - time > period) {
         if (level > 1) {
@@ -599,7 +603,7 @@ class Game {
             else if ((ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() - 1)) || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x()))
                      || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x() + 1)) || (ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() + 2))) {
               enemies[i].hit();
-              //ball.hit();
+              ball.erase();
             }
             else {
               enemies[i].move();
@@ -614,7 +618,8 @@ class Game {
         time = time_passed;
       }
     }
-
+    
+ 
 
   private:
     int level;
@@ -652,6 +657,8 @@ class Game {
       else {
         matrix.fillScreen(BLACK.to_333());
         game_over();
+        setup();
+ 
       }
     }
 };
@@ -709,7 +716,7 @@ void game_over() {
   matrix.setTextColor(WHITE.to_333());
   matrix.setTextSize(1);
   matrix.print("OVER");
+  delay(3000);
 
 }
-
 
