@@ -211,8 +211,8 @@ class Cannonball {
     //
     void move() {
       fired = true;
-      for(int i = x ; i < 16; i++) {
-        if(y > 0) {
+      for(int i = y ; i < 16; i++) {
+        if(y > -1) {
           erase();
           y--;
           draw();
@@ -478,7 +478,10 @@ class Game {
     // Modifies: global variable matrix
     void update(int potentiometer_value, bool button_pressed) {
 
-      
+      if(button_pressed){
+        ball.fire(player.get_x(), player.get_y() - 1);
+        ball.move();
+      }
 
       if(level > 1){
         for(int i = 8; i < 16; i++){
@@ -542,7 +545,7 @@ class Game {
           else if((ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() - 1)) || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x()))
           || (ball.get_y() == (enemies[i].get_y() + 2) && ball.get_x() == (enemies[i].get_x() + 1)) || (ball.get_y() == (enemies[i].get_y() + 3) && ball.get_x() == (enemies[i].get_x() + 2))){
             enemies[i].hit();
-            ball.hit();  
+            ball.erase();  
           }
           else{
             enemies[i].move();
@@ -584,6 +587,7 @@ class Game {
           }
           
         }
+        
         for(int i = 0; i < 8; i++){
           enemies[i].draw();
         }
@@ -645,7 +649,6 @@ void setup() {
 void loop() {
   int potentiometer_value = analogRead(POTENTIOMETER_PIN_NUMBER);
   bool button_pressed = (digitalRead(BUTTON_PIN_NUMBER) == HIGH);
-
   delay(1000);
   game.update(potentiometer_value, button_pressed);
 }
