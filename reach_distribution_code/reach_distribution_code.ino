@@ -16,12 +16,14 @@ const uint8_t C = A2;
 
 // define the wiring of the inputs
 const int POTENTIOMETER_PIN_NUMBER = 5;
-const int BUTTON_PIN_NUMBER = 10;
+const int BUTTON_PIN_NUMBER_1 = 10; //button one 
+const int BUTTON_PIN_NUMBER_2 = 11; //button two
 
 // a global variable that represents the LED screen
 RGBmatrixPanel matrix(A, B, C, CLK, LAT, OE, false);
 
 void print_ground();
+//write void game_over(); <--prints score and time and does exit(0)
 
 class Color {
   public:
@@ -153,22 +155,23 @@ class Dinosaur {
       matrix.drawPixel(x - 1, y + 5, color.to_333());
       matrix.drawPixel(x - 2, y + 5, color.to_333());
       matrix.drawPixel(x - 3, y + 5, color.to_333());
-      matrix.drawPixel(x, y + 1, RED.to_333());
+      //matrix.drawPixel(x, y + 1, RED.to_333());
     }
     void redraw_with_rgb(Color color) {
-      matrix.drawPixel(0, 13, color.to_333());
-      matrix.drawPixel(1, 13, color.to_333());
-      matrix.drawPixel(2, 13, color.to_333());
-      matrix.drawPixel(3, 13, color.to_333());
-      matrix.drawPixel(1, 12, color.to_333());
-      matrix.drawPixel(2, 12, color.to_333());
-      matrix.drawPixel(1, 11, color.to_333());
-      matrix.drawPixel(2, 11, color.to_333());
+      matrix.drawPixel(3, 9, color.to_333());
+      matrix.drawPixel(4, 10, color.to_333());
+      matrix.drawPixel(4, 11, color.to_333());
       matrix.drawPixel(3, 11, color.to_333());
-      matrix.drawPixel(1, 10, color.to_333());
-      matrix.drawPixel(3, 10, color.to_333());
-      matrix.drawPixel(2, 9, color.to_333());
-      matrix.drawPixel(x, y + 1, RED.to_333());
+      matrix.drawPixel(3, 12, color.to_333());
+      matrix.drawPixel(3, 13, color.to_333());
+      matrix.drawPixel(2 , 13, color.to_333());
+      matrix.drawPixel(1, 13, color.to_333());
+      matrix.drawPixel(0, 13, color.to_333());
+      matrix.drawPixel(2, 12, color.to_333());
+      matrix.drawPixel(2, 11, color.to_333());
+      matrix.drawPixel(2, 10, color.to_333());
+      matrix.drawPixel(0, 12, color.to_333());
+      //matrix.drawPixel(x, y + 2, RED.to_333());
     }
 
 };
@@ -337,33 +340,19 @@ class Game {
           (d.get_x() - 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y() + 1) ||
           (d.get_x() - 2 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y() + 1) ||
           (d.get_x() - 3 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y() + 1)) {
-        exit(0);
+        //exit(0);
       }
     }
-    //just cactus
-    void level_one(int potentiometer_value, bool button_pressed) {
+
+    void dinosaur_button_jump(int period, bool button_pressed, bool button_pressed_2){ 
       dino_curr_time = millis();
-      cacti_curr_time = millis();
 
-      if (d.get_y() + 5 == 13) {
-        if ((potentiometer_value / 32) > d.get_x()) {
-          d.erase();
-          d.duck();
-          d.duck_erase();
-        }
-        else if ((potentiometer_value / 32) < d.get_x()) {
-          d.erase();
-          d.duck();
-          d.duck_erase();
-        }
-      }
-
-      if (button_pressed == true && d.has_jumped() == false) {
+      if (button_pressed_2 == false && button_pressed == true && d.has_jumped() == false) {
         d.set_jump();
         time = millis();
       }
       if (d.has_jumped() == true) {
-        if (dino_curr_time - time > 100) {
+        if (dino_curr_time - time > period) {
           d.erase();
           d.dino_jump();
           d.dino_come_down();
@@ -372,6 +361,41 @@ class Game {
           time = millis();
         }
       }
+      
+    }
+
+    void dinosaur_button_duck(bool button_pressed_2){
+      if(d.has_jumped() == false && button_pressed_2 == true){
+        d.erase();
+        d.duck();
+      }
+      else if(d.has_jumped() == false && button_pressed_2 == false){
+        d.duck_erase();
+        d.draw();
+      }
+      
+    }
+    //just cactus
+    void level_one(int potentiometer_value, bool button_pressed, bool button_pressed_2) {
+      
+      cacti_curr_time = millis();
+      dinosaur_button_jump(100, button_pressed, button_pressed_2);
+      dinosaur_button_duck(button_pressed_2);
+
+//      if (d.get_y() + 5 == 13) {
+//        if ((potentiometer_value / 32) > d.get_x()) {
+//          d.erase();
+//          d.duck();
+//          d.duck_erase();
+//        }
+//        else if ((potentiometer_value / 32) < d.get_x()) {
+//          d.erase();
+//          d.duck();
+//          d.duck_erase();
+//        }
+//      }
+
+      
 
       if (c[prev_rand_num].get_cactus_on_screen() == false) {
         c[prev_rand_num].set_cactus_on_screen();
@@ -564,12 +588,12 @@ class Game {
       }
       }*/
 
-    void update(int potentiometer_value, bool button_pressed) {
-      d.draw();
+    void update(int potentiometer_value, bool button_pressed, bool button_pressed_2) {
+      
       print_ground();
       game_time = millis();
       if (game_time <= 20000) {
-        level_one(potentiometer_value, button_pressed);
+        level_one(potentiometer_value, button_pressed, button_pressed_2);
       }
       //    else if(game_time <= 45000){
       //      level_two(button_pressed);
@@ -610,7 +634,8 @@ void setup() {
     readings[thisReading] = 0;
   }
   randomSeed(analogRead(0));
-  pinMode(BUTTON_PIN_NUMBER, INPUT);
+  pinMode(BUTTON_PIN_NUMBER_1, INPUT);
+  //pinMode(BUTTON_PIN_NUMBER_2, INPUT); //button two 
   matrix.begin();
   game.setup();
 }
@@ -625,8 +650,9 @@ void loop() {
   }
   average = total / numReadings;
   //int potentiometer_value = analogRead(POTENTIOMETER_PIN_NUMBER);
-  bool button_pressed = (digitalRead(BUTTON_PIN_NUMBER) == HIGH);
-  game.update(average, button_pressed);
+  bool button_pressed = (digitalRead(BUTTON_PIN_NUMBER_1) == HIGH);
+  bool button_pressed_2 = (digitalRead(BUTTON_PIN_NUMBER_2) == HIGH); 
+  game.update(average, button_pressed, button_pressed_2);
 
 }
 
