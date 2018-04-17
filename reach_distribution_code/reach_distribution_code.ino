@@ -16,14 +16,14 @@ const uint8_t C = A2;
 
 // define the wiring of the inputs
 const int POTENTIOMETER_PIN_NUMBER = 5;
-const int BUTTON_PIN_NUMBER_1 = 10; //button one 
+const int BUTTON_PIN_NUMBER_1 = 10; //button one
 const int BUTTON_PIN_NUMBER_2 = 11; //button two
 
 // a global variable that represents the LED screen
 RGBmatrixPanel matrix(A, B, C, CLK, LAT, OE, false);
 
 void print_ground();
-//write void game_over(); <--prints score and time and does exit(0)
+void game_over();
 
 class Color {
   public:
@@ -182,31 +182,23 @@ class Bird {
     Bird() {
 
       x = 31;
-
+      bird_on_screen = false;
     }
 
-    void draw_bird_1() {
+    void set_bird_on_screen() {
+      bird_on_screen = true;
+    }
+
+    void draw_bird() {
       matrix.drawPixel(x, y, RED.to_333());
       matrix.drawPixel(x + 1, y - 1, RED.to_333());
       matrix.drawPixel(x - 1, y - 1, RED.to_333());
     }
 
-    void draw_bird_2() {
-      matrix.drawPixel(x, y, RED.to_333());
-      matrix.drawPixel(x - 1, y + 1, RED.to_333());
-      matrix.drawPixel(x + 1, y + 1, RED.to_333());
-    }
-
-    void erase_1() {
+    void erase() {
       matrix.drawPixel(x, y, BLACK.to_333());
       matrix.drawPixel(x + 1, y - 1, BLACK.to_333());
       matrix.drawPixel(x - 1, y - 1, BLACK.to_333());
-    }
-
-    void erase_2() {
-      matrix.drawPixel(x, y, BLACK.to_333());
-      matrix.drawPixel(x - 1, y + 1, BLACK.to_333());
-      matrix.drawPixel(x + 1, y + 1, BLACK.to_333());
     }
 
     void set_y(int y_arg) {
@@ -221,14 +213,22 @@ class Bird {
       return y;
     }
     void move() {
-      if (x >= 0) {
+      if (x >= -1) {
         x--;
       }
+      else {
+        bird_on_screen = false;
+      }
+    }
+
+    bool get_bird_on_screen() {
+      return bird_on_screen;
     }
 
   private:
     int x;
     int y;
+    bool bird_on_screen;
 };
 
 class Cactus {
@@ -244,7 +244,7 @@ class Cactus {
     }
 
     void move() {
-      if (x >= -1) {
+      if (x >= -2) {
         x--;
       }
       else {
@@ -323,9 +323,41 @@ class Game {
     void setup() {
       d.draw();
       print_ground();
+      for (int i = 0; i < 20; i++) {
+        cactus_bird[i] = random(0,4);
+      }
 
     }
-    void dino_dead() {
+
+    void dino_dead_bird() {
+      if ((d.get_x() + 1 == b[prev_rand_num_bird].get_x() && d.get_y() + 1 == b[prev_rand_num_bird].get_y()) ||
+          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() && d.get_y() + 2 == b[prev_rand_num_bird].get_y()) ||
+          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() && d.get_y() + 4 == b[prev_rand_num_bird].get_y()) ||
+          (d.get_x() == b[prev_rand_num_bird].get_x() && d.get_y() + 5 == b[prev_rand_num_bird].get_y()) ||
+          (d.get_x() - 1 == b[prev_rand_num_bird].get_x() && d.get_y() + 5 == b[prev_rand_num_bird].get_y()) ||
+          (d.get_x() - 2 == b[prev_rand_num_bird].get_x() && d.get_y() + 5 == b[prev_rand_num_bird].get_y()) ||
+          (d.get_x() - 3 == b[prev_rand_num_bird].get_x() && d.get_y() + 5 == b[prev_rand_num_bird].get_y()) ||
+          (d.get_x() == b[prev_rand_num_bird].get_x() && d.get_y() == b[prev_rand_num_bird].get_y()) ||
+          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 1 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 2 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 4 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() - 1 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() - 2 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() - 3 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() == b[prev_rand_num_bird].get_x() + 1 && d.get_y() == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 1 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 2 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 4 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() - 1 == b[prev_rand_num].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() - 2 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() - 3 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
+          (d.get_x() - 3 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1)) {
+        game_over();
+      }
+    }
+    void dino_dead_cactus() {
       if ((d.get_x() + 1 == c[prev_rand_num].get_x() && d.get_y() + 1 == c[prev_rand_num].get_y() - 1) ||
           (d.get_x() + 1 == c[prev_rand_num].get_x() && d.get_y() + 2 == c[prev_rand_num].get_y() - 1) ||
           (d.get_x() + 1 == c[prev_rand_num].get_x() && d.get_y() + 4 == c[prev_rand_num].get_y() - 1) ||
@@ -333,18 +365,65 @@ class Game {
           (d.get_x() - 1 == c[prev_rand_num].get_x() && d.get_y() + 5 == c[prev_rand_num].get_y() - 1) ||
           (d.get_x() - 2 == c[prev_rand_num].get_x() && d.get_y() + 5 == c[prev_rand_num].get_y() - 1) ||
           (d.get_x() - 3 == c[prev_rand_num].get_x() && d.get_y() + 5 == c[prev_rand_num].get_y() - 1) ||
-          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 1 == c[prev_rand_num].get_y() + 1) ||
-          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 2 == c[prev_rand_num].get_y() + 1) ||
-          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 4 == c[prev_rand_num].get_y() + 1) ||
-          (d.get_x() == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y() + 1) ||
-          (d.get_x() - 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y() + 1) ||
-          (d.get_x() - 2 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y() + 1) ||
-          (d.get_x() - 3 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y() + 1)) {
-        //exit(0);
+          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 1 == c[prev_rand_num].get_y()) ||
+          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 2 == c[prev_rand_num].get_y()) ||
+          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 4 == c[prev_rand_num].get_y()) ||
+          (d.get_x() == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y()) ||
+          (d.get_x() - 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y()) ||
+          (d.get_x() - 2 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y()) ||
+          (d.get_x() - 3 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y())) {
+        game_over();
       }
     }
 
-    void dinosaur_button_jump(int period, bool button_pressed, bool button_pressed_2){ 
+     void dino_dead_bird3() {
+      if ((d.get_x() + 1 == bird[i].get_x() && d.get_y() + 1 == bird[i].get_y()) ||
+          (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 2 == bird[i].get_y()) ||
+          (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 4 == bird[i].get_y()) ||
+          (d.get_x() == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+          (d.get_x() - 1 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+          (d.get_x() - 2 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+          (d.get_x() - 3 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+          (d.get_x() == bird[i].get_x() && d.get_y() == bird[i].get_y()) ||
+          (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
+          (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 2 == bird[i].get_y() - 1) ||
+          (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 4 == bird[i].get_y() - 1) ||
+          (d.get_x() == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+          (d.get_x() - 1 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+          (d.get_x() - 2 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+          (d.get_x() - 3 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+          (d.get_x() == bird[i].get_x() + 1 && d.get_y() == bird[i].get_y() - 1) ||
+          (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
+          (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 2 == bird[i].get_y() - 1) ||
+          (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 4 == bird[i].get_y() - 1) ||
+          (d.get_x() == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+          (d.get_x() - 1 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+          (d.get_x() - 2 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+          (d.get_x() - 3 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+          (d.get_x() - 3 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1)) {
+        game_over();
+      }
+    }
+    void dino_dead_cactus3() {
+      if ((d.get_x() + 1 == cac[i].get_x() && d.get_y() + 1 == cac[i].get_y() - 1) ||
+          (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 2 == cac[i].get_y() - 1) ||
+          (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 4 == cac[i].get_y() - 1) ||
+          (d.get_x() == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
+          (d.get_x() - 1 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
+          (d.get_x() - 2 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
+          (d.get_x() - 3 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
+          (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 1 == cac[i].get_y()) ||
+          (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 2 == cac[i].get_y()) ||
+          (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 4 == cac[i].get_y()) ||
+          (d.get_x() == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
+          (d.get_x() - 1 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
+          (d.get_x() - 2 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
+          (d.get_x() - 3 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y())) {
+        game_over();
+      }
+    }
+
+    void dinosaur_button_jump(int period, bool button_pressed, bool button_pressed_2) {
       dino_curr_time = millis();
 
       if (button_pressed_2 == false && button_pressed == true && d.has_jumped() == false) {
@@ -356,48 +435,36 @@ class Game {
           d.erase();
           d.dino_jump();
           d.dino_come_down();
+          dino_dead_cactus();
+          dino_dead_bird();
           d.draw();
-          dino_dead();
           time = millis();
         }
       }
-      
+
     }
 
-    void dinosaur_button_duck(bool button_pressed_2){
-      if(d.has_jumped() == false && button_pressed_2 == true){
+    void dinosaur_button_duck(bool button_pressed_2) {
+      if (d.has_jumped() == false && button_pressed_2 == true) {
         d.erase();
         d.duck();
+        dino_dead_bird();
       }
-      else if(d.has_jumped() == false && button_pressed_2 == false){
+      else if (d.has_jumped() == false && button_pressed_2 == false) {
         d.duck_erase();
         d.draw();
+        dino_dead_bird();
       }
-      
+
     }
     //just cactus
-    void level_one(int potentiometer_value, bool button_pressed, bool button_pressed_2) {
-      
+    void level_one(bool button_pressed, bool button_pressed_2) {
+
       cacti_curr_time = millis();
       dinosaur_button_jump(100, button_pressed, button_pressed_2);
       dinosaur_button_duck(button_pressed_2);
 
-//      if (d.get_y() + 5 == 13) {
-//        if ((potentiometer_value / 32) > d.get_x()) {
-//          d.erase();
-//          d.duck();
-//          d.duck_erase();
-//        }
-//        else if ((potentiometer_value / 32) < d.get_x()) {
-//          d.erase();
-//          d.duck();
-//          d.duck_erase();
-//        }
-//      }
-
-      
-
-      if (c[prev_rand_num].get_cactus_on_screen() == false) {
+      if (game_time <= 21000 && c[prev_rand_num].get_cactus_on_screen() == false) {
         c[prev_rand_num].set_cactus_on_screen();
         int rand_num = random(0, 39);
         prev_rand_num = rand_num;
@@ -408,252 +475,237 @@ class Game {
           if (prev_rand_num < 13) {
             c[prev_rand_num].erase_1();
             c[prev_rand_num].move();
+            dino_dead_cactus();
             c[prev_rand_num].draw_cacti_1();
-            dino_dead();
             cacti_time = millis();
 
           }
           else if (prev_rand_num < 26) {
             c[prev_rand_num].erase_2();
             c[prev_rand_num].move();
+            dino_dead_cactus();
             c[prev_rand_num].draw_cacti_2();
-            dino_dead();
             cacti_time = millis();
 
           }
           else if (prev_rand_num < 39) {
             c[prev_rand_num].erase_3();
             c[prev_rand_num].move();
+            dino_dead_cactus();
             c[prev_rand_num].draw_cacti_3();
-            dino_dead();
             cacti_time = millis();
           }
         }
       }
     }
 
-    //add in birds
-    /*void level_two(bool button_pressed) {
-      dino_curr_time = millis();
-      if (button_pressed == true && d.has_jumped() == false) {
-        d.set_jump();
-        time = millis();
+    //only birds
+    void level_two(bool button_pressed, bool button_pressed_2) {
+
+      bird_curr_time = millis();
+      dinosaur_button_jump(85, button_pressed, button_pressed_2);
+      dinosaur_button_duck(button_pressed_2);
+
+      if (game_time <= 45000 && b[prev_rand_num_bird].get_bird_on_screen() == false) {
+        b[prev_rand_num_bird].set_bird_on_screen();
+        int rand_num_y = random(6, 13);
+        int rand_num_bird = random(0, 20);
+        prev_rand_num_bird = rand_num_bird;
+        b[prev_rand_num_bird].set_y(rand_num_y);
+        bird_time = millis();
       }
-      if (d.has_jumped() == true) {
-        if (dino_curr_time - time > 100) {
-          d.erase();
-          d.dino_jump();
-          d.dino_come_down();
-          d.draw();
-          time = millis();
+      else {
+        if (bird_curr_time - bird_time > 55) {
+          b[prev_rand_num_bird].erase();
+          b[prev_rand_num_bird].move();
+          b[prev_rand_num_bird].draw_bird();
+          dino_dead_bird();
+          bird_time = millis();
         }
-      }
-      int rand_num = random(4);
-      if (cacti_curr_time - cacti_time > 50) {
-        if (rand_num = 1) {
-          c.erase_1();
-          c.move();
-          c.draw_cacti_1();
-          cacti_time = millis();
-        }
-        if (rand_num = 2) {
-          c.erase_2();
-          c.move();
-          c.draw_cacti_2();
-          cacti_time = millis();
-        }
-        if (rand_num = 3) {
-          c.erase_1();
-          c.move();
-          c.draw_cacti_3();
-          cacti_time = millis();
-        }
-      }
       }
 
-      //first increase in speed for movement of cacti, bird, and dino
-      void level_three(bool button_pressed) {
-      dino_curr_time = millis();
-      if (button_pressed == true && d.has_jumped() == false) {
-        d.set_jump();
-        time = millis();
-      }
-      if (d.has_jumped() == true) {
-        if (dino_curr_time - time > 75) {
-          d.erase();
-          d.dino_jump();
-          d.dino_come_down();
-          d.draw();
-          time = millis();
-        }
-      }
-      int rand_num = random(4);
-      if (cacti_curr_time - cacti_time > 50) {
-        if (rand_num = 1) {
-          c.erase_1();
-          c.move();
-          c.draw_cacti_1();
-          cacti_time = millis();
-        }
-        if (rand_num = 2) {
-          c.erase_2();
-          c.move();
-          c.draw_cacti_2();
-          cacti_time = millis();
-        }
-        if (rand_num = 3) {
-          c.erase_1();
-          c.move();
-          c.draw_cacti_3();
-          cacti_time = millis();
-        }
-      }
-      }
+    }
 
-      //second increase in speed for movement of cacti, bird, and dino
-      void level_four(bool button_pressed) {
-      dino_curr_time = millis();
-      if (button_pressed == true && d.has_jumped() == false) {
-        d.set_jump();
-        time = millis();
-      }
-      if (d.has_jumped() == true) {
-        if (dino_curr_time - time > 50) {
-          d.erase();
-          d.dino_jump();
-          d.dino_come_down();
-          d.draw();
-          time = millis();
-        }
-      }
-      int rand_num = random(4);
-      if (cacti_curr_time - cacti_time > 50) {
-        if (rand_num = 1) {
-          c.erase_1();
-          c.move();
-          c.draw_cacti_1();
-          cacti_time = millis();
-        }
-        if (rand_num = 2) {
-          c.erase_2();
-          c.move();
-          c.draw_cacti_2();
-          cacti_time = millis();
-        }
-        if (rand_num = 3) {
-          c.erase_1();
-          c.move();
-          c.draw_cacti_3();
-          cacti_time = millis();
-        }
-      }
-      }
+    //first increase in speed for movement of cacti, bird, and dino
+    void level_three(bool button_pressed, bool button_pressed_2) {
+      cacti_curr_time = millis();
+      bird_curr_time = millis();
 
-      //third and final increase in speed for movement of cacti, bird, and dino
-      void level_five(bool button_pressed) {
-      dino_curr_time = millis();
-      if (button_pressed == true && d.has_jumped() == false) {
-        d.set_jump();
-        time = millis();
-      }
-      if (d.has_jumped() == true) {
-        if (dino_curr_time - time > 25) {
-          d.erase();
-          d.dino_jump();
-          d.dino_come_down();
-          d.draw();
-          time = millis();
-        }
-      }
-      int rand_num = random(4);
-      if (cacti_curr_time - cacti_time > 50) {
-        if (rand_num = 1) {
-          c.erase_1();
-          c.move();
-          c.draw_cacti_1();
-          cacti_time = millis();
-        }
-        if (rand_num = 2) {
-          c.erase_2();
-          c.move();
-          c.draw_cacti_2();
-          cacti_time = millis();
-        }
-        if (rand_num = 3) {
-          c.erase_1();
-          c.move();
-          c.draw_cacti_3();
-          cacti_time = millis();
-        }
-      }
-      }*/
+      dinosaur_button_jump(75, button_pressed, button_pressed_2);
+      dinosaur_button_duck(button_pressed_2);
 
-    void update(int potentiometer_value, bool button_pressed, bool button_pressed_2) {
-      
-      print_ground();
+      if (cactus_bird[i] == 0) {
+        if (cac[i].get_cactus_on_screen() == false) {
+          cac[i].set_cactus_on_screen();
+          cacti_time = millis();
+        }
+        else {
+          if (cacti_curr_time - cacti_time > 50) {
+            cac[i].erase_1();
+            cac[i].move();
+            dino_dead_cactus3();
+            cac[i].draw_cacti_1();
+            cacti_time = millis();
+            if (cac[i].get_x() <= -3) {
+              i += 1;
+            }
+          }
+        }
+      }
+      else if (cactus_bird[i] == 1) {
+
+        if (cac[i].get_cactus_on_screen() == false) {
+          cac[i].set_cactus_on_screen();
+          cacti_time = millis();
+        }
+        else {
+          if (cacti_curr_time - cacti_time > 50) {
+            cac[i].erase_2();
+            cac[i].move();
+            dino_dead_cactus3();
+            cac[i].draw_cacti_2();
+            cacti_time = millis();
+            if (cac[i].get_x() <= -2) {
+              i += 1;
+            }
+          }
+        }
+      }
+      else if (cactus_bird[i] == 2) {
+        if (cac[i].get_cactus_on_screen() == false) {
+          cac[i].set_cactus_on_screen();
+          cacti_time = millis();
+        }
+        else {
+          if (cacti_curr_time - cacti_time > 50) {
+            cac[i].erase_3();
+            cac[i].move();
+            dino_dead_cactus3();
+            cac[i].draw_cacti_3();
+            cacti_time = millis();
+            if (cac[i].get_x() <= -2) {
+            i += 1;
+          }
+          }
+        }
+
+      }
+      else if (cactus_bird[i] == 3) {
+        if (bird[i].get_bird_on_screen() == false) {
+          bird[i].set_bird_on_screen();
+          int rand_num_y = random(6, 13);
+          bird[i].set_y(rand_num_y);
+          bird_time = millis();
+        }
+        else {
+          if (bird_curr_time - bird_time > 55) {
+            bird[i].erase();
+            bird[i].move();
+            bird[i].draw_bird();
+            dino_dead_bird3();
+            bird_time = millis();
+            if(bird[i].get_x() <= -2){
+              i += 1;
+            }
+          }
+        }
+      }
+    }
+
+    //second increase in speed for movement of cacti, bird, and dino
+    void level_four(bool button_pressed, bool button_pressed_2) {
+      cacti_curr_time = millis();
+
+      dinosaur_button_jump(50, button_pressed, button_pressed_2);
+      dinosaur_button_duck(button_pressed_2);
+
+
+    }
+
+    //third and final increase in speed for movement of cacti, bird, and dino
+    void level_five(bool button_pressed, bool button_pressed_2) {
+      cacti_curr_time = millis();
+
+      dinosaur_button_jump(25, button_pressed, button_pressed_2);
+      dinosaur_button_duck(button_pressed_2);
+
+
+    }
+
+    long get_game_time() {
+      return game_time / 1000;
+    }
+
+    void update(bool button_pressed, bool button_pressed_2) {
+
+      //print_ground();
       game_time = millis();
-      if (game_time <= 20000) {
-        level_one(potentiometer_value, button_pressed, button_pressed_2);
-      }
-      //    else if(game_time <= 45000){
-      //      level_two(button_pressed);
-      //    }
-      //    else if(game_time <= 75000){
-      //      level_three(button_pressed);
-      //    }
-      //    else if(game_time <= 110000){
-      //      level_four(button_pressed);
-      //    }
-      //    else{
-      //      level_five(button_pressed);
-      //    }
+//      if (game_time <= 22000) {
+//        level_one(button_pressed, button_pressed_2);
+//      }
+//      else if (game_time <= 48000) {
+//        level_two(button_pressed, button_pressed_2);
+//      }
+      //else if (game_time <= 75000) {
+        level_three(button_pressed, button_pressed_2);
+     // }
+      //      else if (game_time <= 110000) {
+      //        level_four(button_pressed, button_pressed_2);
+      //      }
+      //      else {
+      //        level_five(button_pressed, button_pressed_2);
+      //      }
     }
 
   private:
     Cactus c[39];
-    Bird b;
+    Bird b[20];
     Dinosaur d;
     unsigned long time;
     unsigned long dino_curr_time;
     unsigned long game_time;
+    unsigned long bird_time;
+    unsigned long bird_curr_time;
     unsigned long cacti_time;
     unsigned long cacti_curr_time;
     int prev_rand_num = random(0, 39);
+    int prev_rand_num_bird_y = random(6, 13);
+    int prev_rand_num_bird = random(0, 20);
+    //int prev_random_num = random(0, 20);
+    int i = 0;
+    int cactus_bird[20];
+    Cactus cac[20];
+    Bird bird[20];
 };
 
 Game game;
-const int numReadings = 20;
-int readings[numReadings];
-int readIndex = 0;
-int total = 0;
-int average = 0;
 
 void setup() {
   Serial.begin(9600);
-  for (int thisReading = 0; thisReading < numReadings; thisReading++) {
-    readings[thisReading] = 0;
-  }
   randomSeed(analogRead(0));
   pinMode(BUTTON_PIN_NUMBER_1, INPUT);
-  //pinMode(BUTTON_PIN_NUMBER_2, INPUT); //button two 
+  pinMode(BUTTON_PIN_NUMBER_2, INPUT); //button two
   matrix.begin();
   game.setup();
 }
 
 void loop() {
-  total = total - readings[readIndex];
-  readings[readIndex] = analogRead(POTENTIOMETER_PIN_NUMBER);
-  total = total + readings[readIndex];
-  readIndex = readIndex + 1;
-  if (readIndex >= numReadings) {
-    readIndex = 0;
-  }
-  average = total / numReadings;
-  //int potentiometer_value = analogRead(POTENTIOMETER_PIN_NUMBER);
   bool button_pressed = (digitalRead(BUTTON_PIN_NUMBER_1) == HIGH);
-  bool button_pressed_2 = (digitalRead(BUTTON_PIN_NUMBER_2) == HIGH); 
-  game.update(average, button_pressed, button_pressed_2);
+  bool button_pressed_2 = (digitalRead(BUTTON_PIN_NUMBER_2) == HIGH);
+  game.update(button_pressed, button_pressed_2);
 
+}
+
+void game_over() {
+  matrix.fillScreen(BLACK.to_333());
+  matrix.setCursor(0, 1);
+  matrix.setTextColor(WHITE.to_333());
+  matrix.print("SCORE");
+  matrix.setCursor(11, 9);
+  matrix.setTextColor(WHITE.to_333());
+  matrix.print(game.get_game_time());
+  delay(3000);
+  exit(0);
 }
 
 void print_ground() {
