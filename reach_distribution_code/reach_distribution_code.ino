@@ -323,60 +323,60 @@ class Game {
     void setup() {
       d.draw();
       print_ground();
-      for (int i = 0; i < 20; i++) {
-        cactus_bird[i] = random(0,4);
+      for (int i = 0; i < 40; i++) {
+        cactus_bird[i] = random(0, 4);
       }
 
     }
 
     void dino_dead_bird() {
-      if ((d.get_x() + 1 == b[prev_rand_num_bird].get_x() && d.get_y() + 1 == b[prev_rand_num_bird].get_y()) ||
-          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() && d.get_y() + 2 == b[prev_rand_num_bird].get_y()) ||
-          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() && d.get_y() + 4 == b[prev_rand_num_bird].get_y()) ||
-          (d.get_x() == b[prev_rand_num_bird].get_x() && d.get_y() + 5 == b[prev_rand_num_bird].get_y()) ||
-          (d.get_x() - 1 == b[prev_rand_num_bird].get_x() && d.get_y() + 5 == b[prev_rand_num_bird].get_y()) ||
-          (d.get_x() - 2 == b[prev_rand_num_bird].get_x() && d.get_y() + 5 == b[prev_rand_num_bird].get_y()) ||
-          (d.get_x() - 3 == b[prev_rand_num_bird].get_x() && d.get_y() + 5 == b[prev_rand_num_bird].get_y()) ||
-          (d.get_x() == b[prev_rand_num_bird].get_x() && d.get_y() == b[prev_rand_num_bird].get_y()) ||
-          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 1 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 2 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 4 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() - 1 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() - 2 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() - 3 == b[prev_rand_num_bird].get_x() + 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() == b[prev_rand_num_bird].get_x() + 1 && d.get_y() == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 1 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 2 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() + 1 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 4 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() - 1 == b[prev_rand_num].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() - 2 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() - 3 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1) ||
-          (d.get_x() - 3 == b[prev_rand_num_bird].get_x() - 1 && d.get_y() + 5 == b[prev_rand_num_bird].get_y() - 1)) {
+      if ((d.get_x() + 1 == b[i3].get_x() && d.get_y() + 1 == b[i3].get_y()) ||
+          (d.get_x() + 1 == b[i3].get_x() && d.get_y() + 2 == b[i3].get_y()) ||
+          (d.get_x() + 1 == b[i3].get_x() && d.get_y() + 4 == b[i3].get_y()) ||
+          (d.get_x() == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+          (d.get_x() - 1 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+          (d.get_x() - 2 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+          (d.get_x() - 3 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+          (d.get_x() == b[i3].get_x() && d.get_y() == b[i3].get_y()) ||
+          (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
+          (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 2 == b[i3].get_y() - 1) ||
+          (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 4 == b[i3].get_y() - 1) ||
+          (d.get_x() == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+          (d.get_x() - 1 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+          (d.get_x() - 2 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+          (d.get_x() - 3 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+          (d.get_x() == b[i3].get_x() + 1 && d.get_y() == b[i3].get_y() - 1) ||
+          (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
+          (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 2 == b[i3].get_y() - 1) ||
+          (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 4 == b[i3].get_y() - 1) ||
+          (d.get_x() == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+          (d.get_x() - 1 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+          (d.get_x() - 2 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+          (d.get_x() - 3 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+          (d.get_x() - 3 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1)) {
         game_over();
       }
     }
     void dino_dead_cactus() {
-      if ((d.get_x() + 1 == c[prev_rand_num].get_x() && d.get_y() + 1 == c[prev_rand_num].get_y() - 1) ||
-          (d.get_x() + 1 == c[prev_rand_num].get_x() && d.get_y() + 2 == c[prev_rand_num].get_y() - 1) ||
-          (d.get_x() + 1 == c[prev_rand_num].get_x() && d.get_y() + 4 == c[prev_rand_num].get_y() - 1) ||
-          (d.get_x() == c[prev_rand_num].get_x() && d.get_y() + 5 == c[prev_rand_num].get_y() - 1) ||
-          (d.get_x() - 1 == c[prev_rand_num].get_x() && d.get_y() + 5 == c[prev_rand_num].get_y() - 1) ||
-          (d.get_x() - 2 == c[prev_rand_num].get_x() && d.get_y() + 5 == c[prev_rand_num].get_y() - 1) ||
-          (d.get_x() - 3 == c[prev_rand_num].get_x() && d.get_y() + 5 == c[prev_rand_num].get_y() - 1) ||
-          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 1 == c[prev_rand_num].get_y()) ||
-          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 2 == c[prev_rand_num].get_y()) ||
-          (d.get_x() + 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 4 == c[prev_rand_num].get_y()) ||
-          (d.get_x() == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y()) ||
-          (d.get_x() - 1 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y()) ||
-          (d.get_x() - 2 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y()) ||
-          (d.get_x() - 3 == c[prev_rand_num].get_x() - 1 && d.get_y() + 5 == c[prev_rand_num].get_y())) {
+      if ((d.get_x() + 1 == c[i2].get_x() && d.get_y() + 1 == c[i2].get_y() - 1) ||
+          (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 2 == c[i2].get_y() - 1) ||
+          (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 4 == c[i2].get_y() - 1) ||
+          (d.get_x() == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
+          (d.get_x() - 1 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
+          (d.get_x() - 2 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
+          (d.get_x() - 3 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
+          (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 1 == c[i2].get_y()) ||
+          (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 2 == c[i2].get_y()) ||
+          (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 4 == c[i2].get_y()) ||
+          (d.get_x() == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
+          (d.get_x() - 1 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
+          (d.get_x() - 2 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
+          (d.get_x() - 3 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y())) {
         game_over();
       }
     }
 
-     void dino_dead_bird3() {
+    void dino_dead_bird3() {
       if ((d.get_x() + 1 == bird[i].get_x() && d.get_y() + 1 == bird[i].get_y()) ||
           (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 2 == bird[i].get_y()) ||
           (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 4 == bird[i].get_y()) ||
@@ -464,36 +464,44 @@ class Game {
       dinosaur_button_jump(100, button_pressed, button_pressed_2);
       dinosaur_button_duck(button_pressed_2);
 
-      if (game_time <= 21000 && c[prev_rand_num].get_cactus_on_screen() == false) {
-        c[prev_rand_num].set_cactus_on_screen();
-        int rand_num = random(0, 39);
-        prev_rand_num = rand_num;
+      if (game_time <= 19000 && c[i2].get_cactus_on_screen() == false) {
+        c[i2].set_cactus_on_screen();
         cacti_time = millis();
+        prev_random_num = random(0, 3);
       }
       else {
-        if (cacti_curr_time - cacti_time > 50) {
-          if (prev_rand_num < 13) {
-            c[prev_rand_num].erase_1();
-            c[prev_rand_num].move();
+        if (cacti_curr_time - cacti_time > 60) {
+          if (prev_random_num == 0) {
+            c[i2].erase_1();
+            c[i2].move();
             dino_dead_cactus();
-            c[prev_rand_num].draw_cacti_1();
+            c[i2].draw_cacti_1();
             cacti_time = millis();
+            if (c[i2].get_x() <= -3) {
+              i2 += 1;
+            }
 
           }
-          else if (prev_rand_num < 26) {
-            c[prev_rand_num].erase_2();
-            c[prev_rand_num].move();
+          else if (prev_random_num == 1) {
+            c[i2].erase_2();
+            c[i2].move();
             dino_dead_cactus();
-            c[prev_rand_num].draw_cacti_2();
+            c[i2].draw_cacti_2();
             cacti_time = millis();
+            if (c[i2].get_x() <= -3) {
+              i2 += 1;
+            }
 
           }
-          else if (prev_rand_num < 39) {
-            c[prev_rand_num].erase_3();
-            c[prev_rand_num].move();
+          else if (prev_random_num == 2) {
+            c[i2].erase_3();
+            c[i2].move();
             dino_dead_cactus();
-            c[prev_rand_num].draw_cacti_3();
+            c[i2].draw_cacti_3();
             cacti_time = millis();
+            if (c[i2].get_x() <= -3) {
+              i2 += 1;
+            }
           }
         }
       }
@@ -506,21 +514,22 @@ class Game {
       dinosaur_button_jump(85, button_pressed, button_pressed_2);
       dinosaur_button_duck(button_pressed_2);
 
-      if (game_time <= 45000 && b[prev_rand_num_bird].get_bird_on_screen() == false) {
-        b[prev_rand_num_bird].set_bird_on_screen();
+      if (game_time <= 46000 && b[i3].get_bird_on_screen() == false) {
+        b[i3].set_bird_on_screen();
         int rand_num_y = random(6, 13);
-        int rand_num_bird = random(0, 20);
-        prev_rand_num_bird = rand_num_bird;
-        b[prev_rand_num_bird].set_y(rand_num_y);
+        b[i3].set_y(rand_num_y);
         bird_time = millis();
       }
       else {
         if (bird_curr_time - bird_time > 55) {
-          b[prev_rand_num_bird].erase();
-          b[prev_rand_num_bird].move();
-          b[prev_rand_num_bird].draw_bird();
+          b[i3].erase();
+          b[i3].move();
+          b[i3].draw_bird();
           dino_dead_bird();
           bird_time = millis();
+          if (b[i3].get_x() <= -2) {
+            i3 += 1;
+          }
         }
       }
 
@@ -531,7 +540,7 @@ class Game {
       cacti_curr_time = millis();
       bird_curr_time = millis();
 
-      dinosaur_button_jump(75, button_pressed, button_pressed_2);
+      dinosaur_button_jump(50, button_pressed, button_pressed_2);
       dinosaur_button_duck(button_pressed_2);
 
       if (cactus_bird[i] == 0) {
@@ -540,7 +549,7 @@ class Game {
           cacti_time = millis();
         }
         else {
-          if (cacti_curr_time - cacti_time > 50) {
+          if (cacti_curr_time - cacti_time > 30) {
             cac[i].erase_1();
             cac[i].move();
             dino_dead_cactus3();
@@ -559,7 +568,7 @@ class Game {
           cacti_time = millis();
         }
         else {
-          if (cacti_curr_time - cacti_time > 50) {
+          if (cacti_curr_time - cacti_time > 30) {
             cac[i].erase_2();
             cac[i].move();
             dino_dead_cactus3();
@@ -577,15 +586,15 @@ class Game {
           cacti_time = millis();
         }
         else {
-          if (cacti_curr_time - cacti_time > 50) {
+          if (cacti_curr_time - cacti_time > 30) {
             cac[i].erase_3();
             cac[i].move();
             dino_dead_cactus3();
             cac[i].draw_cacti_3();
             cacti_time = millis();
             if (cac[i].get_x() <= -2) {
-            i += 1;
-          }
+              i += 1;
+            }
           }
         }
 
@@ -598,13 +607,13 @@ class Game {
           bird_time = millis();
         }
         else {
-          if (bird_curr_time - bird_time > 55) {
+          if (bird_curr_time - bird_time > 35) {
             bird[i].erase();
             bird[i].move();
             bird[i].draw_bird();
             dino_dead_bird3();
             bird_time = millis();
-            if(bird[i].get_x() <= -2){
+            if (bird[i].get_x() <= -2) {
               i += 1;
             }
           }
@@ -640,15 +649,15 @@ class Game {
 
       //print_ground();
       game_time = millis();
-//      if (game_time <= 22000) {
-//        level_one(button_pressed, button_pressed_2);
-//      }
-//      else if (game_time <= 48000) {
-//        level_two(button_pressed, button_pressed_2);
-//      }
-      //else if (game_time <= 75000) {
+      if (game_time <= 24350) {
+        level_one(button_pressed, button_pressed_2);
+      }
+      else if (game_time <= 48000) {
+        level_two(button_pressed, button_pressed_2);
+      }
+      else if (game_time <= 75000) {
         level_three(button_pressed, button_pressed_2);
-     // }
+      }
       //      else if (game_time <= 110000) {
       //        level_four(button_pressed, button_pressed_2);
       //      }
@@ -658,7 +667,7 @@ class Game {
     }
 
   private:
-    Cactus c[39];
+    Cactus c[20];
     Bird b[20];
     Dinosaur d;
     unsigned long time;
@@ -668,14 +677,13 @@ class Game {
     unsigned long bird_curr_time;
     unsigned long cacti_time;
     unsigned long cacti_curr_time;
-    int prev_rand_num = random(0, 39);
-    int prev_rand_num_bird_y = random(6, 13);
-    int prev_rand_num_bird = random(0, 20);
-    //int prev_random_num = random(0, 20);
+    int i2 = 0;
+    int prev_random_num = random(0, 3);
+    int i3 = 0;
     int i = 0;
-    int cactus_bird[20];
-    Cactus cac[20];
-    Bird bird[20];
+    int cactus_bird[40];
+    Cactus cac[40];
+    Bird bird[40];
 };
 
 Game game;
