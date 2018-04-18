@@ -24,6 +24,7 @@ RGBmatrixPanel matrix(A, B, C, CLK, LAT, OE, false);
 
 void print_ground();
 void game_over();
+void you_win();
 
 class Color {
   public:
@@ -155,7 +156,6 @@ class Dinosaur {
       matrix.drawPixel(x - 1, y + 5, color.to_333());
       matrix.drawPixel(x - 2, y + 5, color.to_333());
       matrix.drawPixel(x - 3, y + 5, color.to_333());
-      //matrix.drawPixel(x, y + 1, RED.to_333());
     }
     void redraw_with_rgb(Color color) {
       matrix.drawPixel(3, 9, color.to_333());
@@ -171,7 +171,6 @@ class Dinosaur {
       matrix.drawPixel(2, 11, color.to_333());
       matrix.drawPixel(2, 10, color.to_333());
       matrix.drawPixel(0, 12, color.to_333());
-      //matrix.drawPixel(x, y + 2, RED.to_333());
     }
 
 };
@@ -329,97 +328,275 @@ class Game {
 
     }
 
-    void dino_dead_bird() {
-      if ((d.get_x() + 1 == b[i3].get_x() && d.get_y() + 1 == b[i3].get_y()) ||
-          (d.get_x() + 1 == b[i3].get_x() && d.get_y() + 2 == b[i3].get_y()) ||
-          (d.get_x() + 1 == b[i3].get_x() && d.get_y() + 4 == b[i3].get_y()) ||
-          (d.get_x() == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
-          (d.get_x() - 1 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
-          (d.get_x() - 2 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
-          (d.get_x() - 3 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
-          (d.get_x() == b[i3].get_x() && d.get_y() == b[i3].get_y()) ||
-          (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
-          (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 2 == b[i3].get_y() - 1) ||
-          (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 4 == b[i3].get_y() - 1) ||
-          (d.get_x() == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
-          (d.get_x() - 1 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
-          (d.get_x() - 2 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
-          (d.get_x() - 3 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
-          (d.get_x() == b[i3].get_x() + 1 && d.get_y() == b[i3].get_y() - 1) ||
-          (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
-          (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 2 == b[i3].get_y() - 1) ||
-          (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 4 == b[i3].get_y() - 1) ||
-          (d.get_x() == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
-          (d.get_x() - 1 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
-          (d.get_x() - 2 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
-          (d.get_x() - 3 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
-          (d.get_x() - 3 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1)) {
-        game_over();
+    void dino_dead_bird(bool button_pressed_2) {
+      if (button_pressed_2) {
+        if ((d.get_x() + 1 == b[i3].get_x() && d.get_y() + 1 == b[i3].get_y()) ||
+            (d.get_x() + 1 == b[i3].get_x() && d.get_y() + 2 == b[i3].get_y()) ||
+            (d.get_x() + 1 == b[i3].get_x() && d.get_y() + 4 == b[i3].get_y()) ||
+            (d.get_x() == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+            (d.get_x() - 1 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+            (d.get_x() - 2 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+            (d.get_x() - 3 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+            (d.get_x() == b[i3].get_x() && d.get_y() + 1 == b[i3].get_y()) ||
+            (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 2 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 4 == b[i3].get_y() - 1) ||
+            (d.get_x() == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 1 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 2 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 3 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() == b[i3].get_x() + 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 2 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 4 == b[i3].get_y() - 1) ||
+            (d.get_x() == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 1 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 2 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 3 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() == b[i3].get_x() - 1 && d.get_y() + 1 == b[i3].get_y() - 1)) {
+          game_over();
+        }
+      }
+      else {
+        if ((d.get_x() + 1 == b[i3].get_x() && d.get_y() + 1 == b[i3].get_y()) ||
+            (d.get_x() + 1 == b[i3].get_x() && d.get_y() + 2 == b[i3].get_y()) ||
+            (d.get_x() + 1 == b[i3].get_x() && d.get_y() + 4 == b[i3].get_y()) ||
+            (d.get_x() == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+            (d.get_x() - 1 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+            (d.get_x() - 2 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+            (d.get_x() - 3 == b[i3].get_x() && d.get_y() + 5 == b[i3].get_y()) ||
+            (d.get_x() == b[i3].get_x() && d.get_y() == b[i3].get_y()) ||
+            (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 2 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() + 1 && d.get_y() + 4 == b[i3].get_y() - 1) ||
+            (d.get_x() == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 1 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 2 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 3 == b[i3].get_x() + 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() == b[i3].get_x() + 1 && d.get_y() == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 1 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 2 == b[i3].get_y() - 1) ||
+            (d.get_x() + 1 == b[i3].get_x() - 1 && d.get_y() + 4 == b[i3].get_y() - 1) ||
+            (d.get_x() == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 1 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 2 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 3 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1) ||
+            (d.get_x() - 3 == b[i3].get_x() - 1 && d.get_y() + 5 == b[i3].get_y() - 1)) {
+          game_over();
+        }
       }
     }
-    void dino_dead_cactus() {
-      if ((d.get_x() + 1 == c[i2].get_x() && d.get_y() + 1 == c[i2].get_y() - 1) ||
-          (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 2 == c[i2].get_y() - 1) ||
-          (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 4 == c[i2].get_y() - 1) ||
-          (d.get_x() == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
-          (d.get_x() - 1 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
-          (d.get_x() - 2 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
-          (d.get_x() - 3 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
-          (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 1 == c[i2].get_y()) ||
-          (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 2 == c[i2].get_y()) ||
-          (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 4 == c[i2].get_y()) ||
-          (d.get_x() == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
-          (d.get_x() - 1 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
-          (d.get_x() - 2 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
-          (d.get_x() - 3 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y())) {
-        game_over();
+    void dino_dead_cactus(int num) {
+      if (num == 0) {
+        if ((d.get_x() + 1 == c[i2].get_x() && d.get_y() + 1 == c[i2].get_y() - 1) ||
+            (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 2 == c[i2].get_y() - 1) ||
+            (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 4 == c[i2].get_y() - 1) ||
+            (d.get_x() == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 1 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 2 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 3 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 1 == c[i2].get_y()) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 2 == c[i2].get_y()) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 4 == c[i2].get_y()) ||
+            (d.get_x() == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
+            (d.get_x() - 1 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
+            (d.get_x() - 2 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
+            (d.get_x() - 3 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y()) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 1 == c[i2].get_y()) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 2 == c[i2].get_y()) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 4 == c[i2].get_y()) ||
+            (d.get_x() == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y()) ||
+            (d.get_x() - 1 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y()) ||
+            (d.get_x() - 2 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y()) ||
+            (d.get_x() - 3 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y())) {
+          game_over();
+        }
+      }
+      if (num == 1) {
+        if ((d.get_x() + 1 == c[i2].get_x() && d.get_y() + 1 == c[i2].get_y() - 2) ||
+            (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 2 == c[i2].get_y() - 2) ||
+            (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 4 == c[i2].get_y() - 2) ||
+            (d.get_x() == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 1 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 2 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 3 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 1 == c[i2].get_y() - 1) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 2 == c[i2].get_y() - 1) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 4 == c[i2].get_y() - 1) ||
+            (d.get_x() == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 1 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 2 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 3 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 1 == c[i2].get_y() - 1) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 2 == c[i2].get_y() - 1) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 4 == c[i2].get_y() - 1) ||
+            (d.get_x() == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 1 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 2 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 1) ||
+            (d.get_x() - 3 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 1)) {
+          game_over();
+        }
+      }
+      if (num == 2) {
+        if ((d.get_x() + 1 == c[i2].get_x() && d.get_y() + 1 == c[i2].get_y() - 3) ||
+            (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 2 == c[i2].get_y() - 3) ||
+            (d.get_x() + 1 == c[i2].get_x() && d.get_y() + 4 == c[i2].get_y() - 3) ||
+            (d.get_x() == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 3) ||
+            (d.get_x() - 1 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 3) ||
+            (d.get_x() - 2 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 3) ||
+            (d.get_x() - 3 == c[i2].get_x() && d.get_y() + 5 == c[i2].get_y() - 3) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 1 == c[i2].get_y() - 2) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 2 == c[i2].get_y() - 2) ||
+            (d.get_x() + 1 == c[i2].get_x() + 1 && d.get_y() + 4 == c[i2].get_y() - 2) ||
+            (d.get_x() == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 1 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 2 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 3 == c[i2].get_x() + 1 && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 1 == c[i2].get_y() - 2) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 2 == c[i2].get_y() - 2) ||
+            (d.get_x() + 1 == c[i2].get_x() - 1 && d.get_y() + 4 == c[i2].get_y() - 2) ||
+            (d.get_x() == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 1 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 2 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 2) ||
+            (d.get_x() - 3 == c[i2].get_x() - 1 && d.get_y() + 5 == c[i2].get_y() - 2)) {
+          game_over();
+        }
       }
     }
 
-    void dino_dead_bird3() {
-      if ((d.get_x() + 1 == bird[i].get_x() && d.get_y() + 1 == bird[i].get_y()) ||
-          (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 2 == bird[i].get_y()) ||
-          (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 4 == bird[i].get_y()) ||
-          (d.get_x() == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
-          (d.get_x() - 1 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
-          (d.get_x() - 2 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
-          (d.get_x() - 3 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
-          (d.get_x() == bird[i].get_x() && d.get_y() == bird[i].get_y()) ||
-          (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
-          (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 2 == bird[i].get_y() - 1) ||
-          (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 4 == bird[i].get_y() - 1) ||
-          (d.get_x() == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
-          (d.get_x() - 1 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
-          (d.get_x() - 2 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
-          (d.get_x() - 3 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
-          (d.get_x() == bird[i].get_x() + 1 && d.get_y() == bird[i].get_y() - 1) ||
-          (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
-          (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 2 == bird[i].get_y() - 1) ||
-          (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 4 == bird[i].get_y() - 1) ||
-          (d.get_x() == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
-          (d.get_x() - 1 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
-          (d.get_x() - 2 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
-          (d.get_x() - 3 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
-          (d.get_x() - 3 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1)) {
-        game_over();
+    void dino_dead_bird3(bool button_pressed_2) {
+      if (button_pressed_2) {
+        if ((d.get_x() + 1 == bird[i].get_x() && d.get_y() + 1 == bird[i].get_y()) ||
+            (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 2 == bird[i].get_y()) ||
+            (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 4 == bird[i].get_y()) ||
+            (d.get_x() == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+            (d.get_x() - 1 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+            (d.get_x() - 2 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+            (d.get_x() - 3 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+            (d.get_x() == bird[i].get_x() && d.get_y() + 1 == bird[i].get_y()) ||
+            (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 2 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 4 == bird[i].get_y() - 1) ||
+            (d.get_x() == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 1 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 2 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 3 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() == bird[i].get_x() + 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 2 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 4 == bird[i].get_y() - 1) ||
+            (d.get_x() == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 1 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 2 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 3 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() == bird[i].get_x() - 1 && d.get_y() + 1 == bird[i].get_y() - 1)) {
+          game_over();
+        }
+      }
+      else {
+        if ((d.get_x() + 1 == bird[i].get_x() && d.get_y() + 1 == bird[i].get_y()) ||
+            (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 2 == bird[i].get_y()) ||
+            (d.get_x() + 1 == bird[i].get_x() && d.get_y() + 4 == bird[i].get_y()) ||
+            (d.get_x() == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+            (d.get_x() - 1 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+            (d.get_x() - 2 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+            (d.get_x() - 3 == bird[i].get_x() && d.get_y() + 5 == bird[i].get_y()) ||
+            (d.get_x() == bird[i].get_x() && d.get_y() == bird[i].get_y()) ||
+            (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 2 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() + 1 && d.get_y() + 4 == bird[i].get_y() - 1) ||
+            (d.get_x() == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 1 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 2 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 3 == bird[i].get_x() + 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() == bird[i].get_x() + 1 && d.get_y() == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 1 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 2 == bird[i].get_y() - 1) ||
+            (d.get_x() + 1 == bird[i].get_x() - 1 && d.get_y() + 4 == bird[i].get_y() - 1) ||
+            (d.get_x() == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 1 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 2 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 3 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1) ||
+            (d.get_x() - 3 == bird[i].get_x() - 1 && d.get_y() + 5 == bird[i].get_y() - 1)) {
+          game_over();
+        }
       }
     }
-    void dino_dead_cactus3() {
-      if ((d.get_x() + 1 == cac[i].get_x() && d.get_y() + 1 == cac[i].get_y() - 1) ||
-          (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 2 == cac[i].get_y() - 1) ||
-          (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 4 == cac[i].get_y() - 1) ||
-          (d.get_x() == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
-          (d.get_x() - 1 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
-          (d.get_x() - 2 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
-          (d.get_x() - 3 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
-          (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 1 == cac[i].get_y()) ||
-          (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 2 == cac[i].get_y()) ||
-          (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 4 == cac[i].get_y()) ||
-          (d.get_x() == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
-          (d.get_x() - 1 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
-          (d.get_x() - 2 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
-          (d.get_x() - 3 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y())) {
-        game_over();
+    void dino_dead_cactus3(int num) {
+      if (num == 0) {
+        if ((d.get_x() + 1 == cac[i].get_x() && d.get_y() + 1 == cac[i].get_y() - 1) ||
+            (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 2 == cac[i].get_y() - 1) ||
+            (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 4 == cac[i].get_y() - 1) ||
+            (d.get_x() == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 1 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 2 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 3 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 1 == cac[i].get_y()) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 2 == cac[i].get_y()) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 4 == cac[i].get_y()) ||
+            (d.get_x() == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
+            (d.get_x() - 1 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
+            (d.get_x() - 2 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
+            (d.get_x() - 3 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y()) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 1 == cac[i].get_y()) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 2 == cac[i].get_y()) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 4 == cac[i].get_y()) ||
+            (d.get_x() == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y()) ||
+            (d.get_x() - 1 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y()) ||
+            (d.get_x() - 2 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y()) ||
+            (d.get_x() - 3 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y())) {
+          game_over();
+        }
+      }
+      if (num == 1) {
+        if ((d.get_x() + 1 == cac[i].get_x() && d.get_y() + 1 == cac[i].get_y() - 2) ||
+            (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 2 == cac[i].get_y() - 2) ||
+            (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 4 == cac[i].get_y() - 2) ||
+            (d.get_x() == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 1 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 2 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 3 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 1 == cac[i].get_y() - 1) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 2 == cac[i].get_y() - 1) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 4 == cac[i].get_y() - 1) ||
+            (d.get_x() == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 1 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 2 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 3 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 1 == cac[i].get_y() - 1) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 2 == cac[i].get_y() - 1) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 4 == cac[i].get_y() - 1) ||
+            (d.get_x() == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 1 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 2 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y() - 1) ||
+            (d.get_x() - 3 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y() - 1)) {
+          game_over();
+        }
+      }
+      if (num == 2) {
+        if ((d.get_x() + 1 == cac[i].get_x() && d.get_y() + 1 == cac[i].get_y() - 3) ||
+            (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 2 == cac[i].get_y() - 3) ||
+            (d.get_x() + 1 == cac[i].get_x() && d.get_y() + 4 == cac[i].get_y() - 3) ||
+            (d.get_x() == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 3) ||
+            (d.get_x() - 1 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 3) ||
+            (d.get_x() - 2 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 3) ||
+            (d.get_x() - 3 == cac[i].get_x() && d.get_y() + 5 == cac[i].get_y() - 3) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 1 == cac[i].get_y() - 2) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 2 == cac[i].get_y() - 2) ||
+            (d.get_x() + 1 == cac[i].get_x() - 1 && d.get_y() + 4 == cac[i].get_y() - 2) ||
+            (d.get_x() == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 1 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 2 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 3 == cac[i].get_x() - 1 && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 1 == cac[i].get_y() - 2) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 2 == cac[i].get_y() - 2) ||
+            (d.get_x() + 1 == cac[i].get_x() + 1 && d.get_y() + 4 == cac[i].get_y() - 2) ||
+            (d.get_x() == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 1 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 2 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y() - 2) ||
+            (d.get_x() - 3 == cac[i].get_x() + 1 && d.get_y() + 5 == cac[i].get_y() - 2)) {
+          game_over();
+        }
       }
     }
 
@@ -435,8 +612,6 @@ class Game {
           d.erase();
           d.dino_jump();
           d.dino_come_down();
-          dino_dead_cactus();
-          dino_dead_bird();
           d.draw();
           time = millis();
         }
@@ -448,12 +623,10 @@ class Game {
       if (d.has_jumped() == false && button_pressed_2 == true) {
         d.erase();
         d.duck();
-        dino_dead_bird();
       }
       else if (d.has_jumped() == false && button_pressed_2 == false) {
         d.duck_erase();
         d.draw();
-        dino_dead_bird();
       }
 
     }
@@ -463,44 +636,45 @@ class Game {
       cacti_curr_time = millis();
       dinosaur_button_jump(100, button_pressed, button_pressed_2);
       dinosaur_button_duck(button_pressed_2);
+      if (i2 < 13) {
+        if (c[i2].get_cactus_on_screen() == false) {
+          c[i2].set_cactus_on_screen();
+          cacti_time = millis();
+          prev_random_num = random(0, 3);
+        }
+        else {
+          if (cacti_curr_time - cacti_time > 55) {
+            if (prev_random_num == 0) {
+              c[i2].erase_1();
+              c[i2].move();
+              dino_dead_cactus(0);
+              c[i2].draw_cacti_1();
+              cacti_time = millis();
+              if (c[i2].get_x() <= -3) {
+                i2 += 1;
+              }
 
-      if (game_time <= 19000 && c[i2].get_cactus_on_screen() == false) {
-        c[i2].set_cactus_on_screen();
-        cacti_time = millis();
-        prev_random_num = random(0, 3);
-      }
-      else {
-        if (cacti_curr_time - cacti_time > 60) {
-          if (prev_random_num == 0) {
-            c[i2].erase_1();
-            c[i2].move();
-            dino_dead_cactus();
-            c[i2].draw_cacti_1();
-            cacti_time = millis();
-            if (c[i2].get_x() <= -3) {
-              i2 += 1;
             }
+            else if (prev_random_num == 1) {
+              c[i2].erase_2();
+              c[i2].move();
+              dino_dead_cactus(1);
+              c[i2].draw_cacti_2();
+              cacti_time = millis();
+              if (c[i2].get_x() <= -3) {
+                i2 += 1;
+              }
 
-          }
-          else if (prev_random_num == 1) {
-            c[i2].erase_2();
-            c[i2].move();
-            dino_dead_cactus();
-            c[i2].draw_cacti_2();
-            cacti_time = millis();
-            if (c[i2].get_x() <= -3) {
-              i2 += 1;
             }
-
-          }
-          else if (prev_random_num == 2) {
-            c[i2].erase_3();
-            c[i2].move();
-            dino_dead_cactus();
-            c[i2].draw_cacti_3();
-            cacti_time = millis();
-            if (c[i2].get_x() <= -3) {
-              i2 += 1;
+            else if (prev_random_num == 2) {
+              c[i2].erase_3();
+              c[i2].move();
+              dino_dead_cactus(2);
+              c[i2].draw_cacti_3();
+              cacti_time = millis();
+              if (c[i2].get_x() <= -3) {
+                i2 += 1;
+              }
             }
           }
         }
@@ -513,26 +687,26 @@ class Game {
       bird_curr_time = millis();
       dinosaur_button_jump(85, button_pressed, button_pressed_2);
       dinosaur_button_duck(button_pressed_2);
-
-      if (game_time <= 46000 && b[i3].get_bird_on_screen() == false) {
-        b[i3].set_bird_on_screen();
-        int rand_num_y = random(6, 13);
-        b[i3].set_y(rand_num_y);
-        bird_time = millis();
-      }
-      else {
-        if (bird_curr_time - bird_time > 55) {
-          b[i3].erase();
-          b[i3].move();
-          b[i3].draw_bird();
-          dino_dead_bird();
+      if (i3 < 13) {
+        if (b[i3].get_bird_on_screen() == false) {
+          b[i3].set_bird_on_screen();
+          int rand_num_y = random(6, 13);
+          b[i3].set_y(rand_num_y);
           bird_time = millis();
-          if (b[i3].get_x() <= -2) {
-            i3 += 1;
+        }
+        else {
+          if (bird_curr_time - bird_time > 55) {
+            b[i3].erase();
+            b[i3].move();
+            b[i3].draw_bird();
+            dino_dead_bird(button_pressed_2);
+            bird_time = millis();
+            if (b[i3].get_x() <= -2) {
+              i3 += 1;
+            }
           }
         }
       }
-
     }
 
     //first increase in speed for movement of cacti, bird, and dino
@@ -549,10 +723,10 @@ class Game {
           cacti_time = millis();
         }
         else {
-          if (cacti_curr_time - cacti_time > 30) {
+          if (cacti_curr_time - cacti_time > 35) {
             cac[i].erase_1();
             cac[i].move();
-            dino_dead_cactus3();
+            dino_dead_cactus3(0);
             cac[i].draw_cacti_1();
             cacti_time = millis();
             if (cac[i].get_x() <= -3) {
@@ -568,10 +742,10 @@ class Game {
           cacti_time = millis();
         }
         else {
-          if (cacti_curr_time - cacti_time > 30) {
+          if (cacti_curr_time - cacti_time > 35) {
             cac[i].erase_2();
             cac[i].move();
-            dino_dead_cactus3();
+            dino_dead_cactus3(1);
             cac[i].draw_cacti_2();
             cacti_time = millis();
             if (cac[i].get_x() <= -2) {
@@ -586,10 +760,10 @@ class Game {
           cacti_time = millis();
         }
         else {
-          if (cacti_curr_time - cacti_time > 30) {
+          if (cacti_curr_time - cacti_time > 35) {
             cac[i].erase_3();
             cac[i].move();
-            dino_dead_cactus3();
+            dino_dead_cactus3(2);
             cac[i].draw_cacti_3();
             cacti_time = millis();
             if (cac[i].get_x() <= -2) {
@@ -607,17 +781,20 @@ class Game {
           bird_time = millis();
         }
         else {
-          if (bird_curr_time - bird_time > 35) {
+          if (bird_curr_time - bird_time > 40) {
             bird[i].erase();
             bird[i].move();
             bird[i].draw_bird();
-            dino_dead_bird3();
+            dino_dead_bird3(button_pressed_2);
             bird_time = millis();
             if (bird[i].get_x() <= -2) {
               i += 1;
             }
           }
         }
+      }
+      if (i == 39) {
+        you_win();
       }
     }
 
@@ -649,13 +826,14 @@ class Game {
 
       //print_ground();
       game_time = millis();
-      if (game_time <= 24350) {
+      if (game_time <= 25000) {
         level_one(button_pressed, button_pressed_2);
       }
-      else if (game_time <= 48000) {
+      else if (game_time <= 50000) {
         level_two(button_pressed, button_pressed_2);
       }
-      else if (game_time <= 75000) {
+      //else if (game_time <= 75000) {
+      else {
         level_three(button_pressed, button_pressed_2);
       }
       //      else if (game_time <= 110000) {
@@ -667,8 +845,8 @@ class Game {
     }
 
   private:
-    Cactus c[20];
-    Bird b[20];
+    Cactus c[13];
+    Bird b[13];
     Dinosaur d;
     unsigned long time;
     unsigned long dino_curr_time;
@@ -704,6 +882,17 @@ void loop() {
 
 }
 
+void you_win() {
+  matrix.fillScreen(BLACK.to_333());
+  matrix.setCursor(0, 1);
+  matrix.setTextColor(WHITE.to_333());
+  matrix.print("YOU");
+  matrix.setCursor(11, 9);
+  matrix.setTextColor(WHITE.to_333());
+  matrix.print("WIN!");
+  delay(3000);
+  exit(0);
+}
 void game_over() {
   matrix.fillScreen(BLACK.to_333());
   matrix.setCursor(0, 1);
