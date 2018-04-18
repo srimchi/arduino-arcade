@@ -798,33 +798,12 @@ class Game {
       }
     }
 
-    //second increase in speed for movement of cacti, bird, and dino
-    void level_four(bool button_pressed, bool button_pressed_2) {
-      cacti_curr_time = millis();
-
-      dinosaur_button_jump(50, button_pressed, button_pressed_2);
-      dinosaur_button_duck(button_pressed_2);
-
-
-    }
-
-    //third and final increase in speed for movement of cacti, bird, and dino
-    void level_five(bool button_pressed, bool button_pressed_2) {
-      cacti_curr_time = millis();
-
-      dinosaur_button_jump(25, button_pressed, button_pressed_2);
-      dinosaur_button_duck(button_pressed_2);
-
-
-    }
-
     long get_game_time() {
       return game_time / 1000;
     }
 
     void update(bool button_pressed, bool button_pressed_2) {
 
-      //print_ground();
       game_time = millis();
       if (game_time <= 25000) {
         level_one(button_pressed, button_pressed_2);
@@ -832,16 +811,9 @@ class Game {
       else if (game_time <= 50000) {
         level_two(button_pressed, button_pressed_2);
       }
-      //else if (game_time <= 75000) {
       else {
         level_three(button_pressed, button_pressed_2);
       }
-      //      else if (game_time <= 110000) {
-      //        level_four(button_pressed, button_pressed_2);
-      //      }
-      //      else {
-      //        level_five(button_pressed, button_pressed_2);
-      //      }
     }
 
   private:
